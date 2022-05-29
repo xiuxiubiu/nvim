@@ -1,6 +1,8 @@
 local api = vim.api
 local g = vim.g
-local opt = vim.opt opt.termguicolors = true -- Enable colors in termimal
+local opt = vim.opt
+
+opt.termguicolors = true -- Enable colors in termimal
 opt.hlsearch = true -- Set highlight on search
 opt.number = true -- Make line numbers default
 opt.tabstop = 4 -- set ts=4
@@ -10,19 +12,18 @@ opt.ignorecase = true -- Case insensitive searching unless /C or capital search
 opt.signcolumn = 'yes' -- Always show sign column
 opt.clipboard = 'unnamedplus' -- AAccess system clipboard
 opt.autochdir = true
+-- http://vimdoc.sourceforge.net/htmldoc/change.html#fo-table
+opt.formatoptions = 'r'
 
--- keymapping
 -- debug
 api.nvim_set_keymap('n', '\'d', '<cmd> lua require"dap".continue()<cr>', {})
 api.nvim_set_keymap('n', '\'b', '<cmd> lua require"dap".toggle_breakpoint()<cr>', {})
 api.nvim_set_keymap('n', '\'l', '<cmd> lua require"dap".list_breakpoints()<cr>', {})
-api.nvim_set_keymap('n', '\'c', '<cmd> lua require"dap".clear_breakpoints()<cr>', {})
-api.nvim_set_keymap('n', '\'t', '<cmd> lua require"dap".terminate()<cr>', {})
+api.nvim_set_keymap('n', '\'c', '<cmd> lua require"dap".clear_breakpoints()<cr>', {}) api.nvim_set_keymap('n', '\'t', '<cmd> lua require"dap".terminate()<cr>', {})
 
 -- dapui
 api.nvim_set_keymap('n', '\'uo', '<cmd> lua require"dapui".open()<cr>', {})
 api.nvim_set_keymap('n', '\'uc', '<cmd> lua require"dapui".close()<cr>', {})
-
 
 -- lsp
 api.nvim_set_keymap('n', '\'g', '<cmd> lua vim.lsp.buf.definition()<cr>', {})
@@ -55,6 +56,8 @@ api.nvim_set_keymap('n', '<C-\\>', '<cmd> ToggleTerm<cr>', {nowait = true})
 api.nvim_set_keymap('n', '<C-s>', '<cmd> lua require"spectre".open_visual({select_word = true})<cr>', {nowait = true})
 
 -- Comment
-api.nvim_set_keymap('n', '<C-_>', '<cmd> lua require"Comment.api".toggle_current_linewise()<cr>', {nowait = true})
-api.nvim_set_keymap('i', '<C-_>', '<cmd> lua require"Comment.api".toggle_current_linewise()<cr>', {nowait = true})
-api.nvim_set_keymap('x', '<C-_>', '<esc><cmd>lua require"Comment.api".toggle_linewise_op(vim.fn.visualmode())<cr>', {nowait = true})
+api.nvim_set_keymap('n', '<C-_>', '<cmd> lua require"Comment.api".toggle_current_linewise()<cr><cmd> normal $<cr>', {nowait = true})
+api.nvim_set_keymap('i', '<C-_>', '<cmd> lua require"Comment.api".toggle_current_linewise()<cr><cmd> normal $<cr>', {nowait = true})
+api.nvim_set_keymap('x', '<C-_>', '<esc><cmd>lua require"Comment.api".toggle_linewise_op(vim.fn.visualmode())<cr><cmd> normal $<cr>', {nowait = true})
+ 
+
