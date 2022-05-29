@@ -40,6 +40,9 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
 -- buffers
 api.nvim_set_keymap('n', ']', '<cmd> bn<cr>', {nowait = true})
 api.nvim_set_keymap('n', '[', '<cmd> bp<cr>', {nowait = true})
+for i = 1, 9, 1 do
+	api.nvim_set_keymap('n', i .. '<cr>', '<cmd> BufferLineGoToBuffer '.. i .. '<cr>', {nowait = true})
+end
 
 -- nvim-tree
 api.nvim_set_keymap('n', '\\', '<cmd> NvimTreeToggle<cr>', {nowait = true})
@@ -50,3 +53,8 @@ api.nvim_set_keymap('n', '<C-\\>', '<cmd> ToggleTerm<cr>', {nowait = true})
 
 -- spectre
 api.nvim_set_keymap('n', '<C-s>', '<cmd> lua require"spectre".open_visual({select_word = true})<cr>', {nowait = true})
+
+-- Comment
+api.nvim_set_keymap('n', '<C-_>', '<cmd> lua require"Comment.api".toggle_current_linewise()<cr>', {nowait = true})
+api.nvim_set_keymap('i', '<C-_>', '<cmd> lua require"Comment.api".toggle_current_linewise()<cr>', {nowait = true})
+api.nvim_set_keymap('x', '<C-_>', '<esc><cmd>lua require"Comment.api".toggle_linewise_op(vim.fn.visualmode())<cr>', {nowait = true})

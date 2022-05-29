@@ -5,8 +5,7 @@ require('bufferline').setup {
     close_command = "bdelete! %d",       -- can be a string | function, see "Mouse actions"
     right_mouse_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
     left_mouse_command = "buffer %d",    -- can be a string | function, see "Mouse actions"
-    middle_mouse_command = nil,          -- can be a string | function, see "Mouse actions"
-    -- NOTE: this plugin is designed with this icon in mind,
+    middle_mouse_command = nil,          -- can be a string | function, see "Mouse actions" NOTE: this plugin is designed with this icon in mind,
     -- and so changing this is NOT recommended, this is intended
     -- as an escape hatch for people who cannot bear it for whatever reason
     indicator_icon = '▎',
@@ -63,7 +62,7 @@ require('bufferline').setup {
     persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
     -- can also be a table containing 2 custom separators
     -- [focused and unfocused]. eg: { '|', '|' }
-    -- separator_style = "slant" | "thick" | "thin" | { 'any', 'any' },
+    separator_style = 'thin', -- "slant" | "thick" | "thin" | { 'any', 'any' },
     -- enforce_regular_tabs = true, -- false | true,
     always_show_bufferline = true, -- true | false,
     sort_by = 'id', -- 'insert_after_current' |'insert_at_end' | 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b)
