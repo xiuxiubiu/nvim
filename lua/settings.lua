@@ -26,10 +26,18 @@ api.nvim_set_keymap('n', '\'uo', '<cmd> lua require"dapui".open()<cr>', {})
 api.nvim_set_keymap('n', '\'uc', '<cmd> lua require"dapui".close()<cr>', {})
 
 -- lsp
+vim.diagnostic.config({float={border="single"}})
 api.nvim_set_keymap('n', '\'g', '<cmd> lua vim.lsp.buf.definition()<cr>', {})
 api.nvim_set_keymap('n', '\'r', '<cmd> lua vim.lsp.buf.references({float=true})<cr>', {})
-api.nvim_set_keymap('n', '\'f', '<cmd> lua vim.diagnostic.open_float({border="single"})<cr>', {})
+vim.lsp.handlers["textDocument/references"] = vim.lsp.with(
+	vim.lsp.handlers.references, {
+		border = "single"
+	}
+)
+api.nvim_set_keymap('n', '\'f', '<cmd> lua vim.diagnostic.open_float()<cr>', {})
 api.nvim_set_keymap('n', '\'el', '<cmd> lua vim.diagnostic.setloclist()<cr>', {})
+api.nvim_set_keymap('n', '\'ep', '<cmd> lua vim.diagnostic.goto_prev()<cr><cmd> lua vim.diagnostic.open_float()<cr>', {})
+api.nvim_set_keymap('n', '\'en', '<cmd> lua vim.diagnostic.goto_next()<cr><cmd> lua vim.diagnostic.open_float()<cr>', {})
 api.nvim_set_keymap('n', '\'h', '<cmd> lua vim.lsp.buf.hover()<cr>', {})
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
 	vim.lsp.handlers.hover, {
