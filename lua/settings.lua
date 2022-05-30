@@ -28,7 +28,7 @@ api.nvim_set_keymap('n', '\'t', '<cmd> lua require"dap".terminate()<cr>', {})
 
 -- dapui
 api.nvim_set_keymap('n', '\'ut', '<cmd> lua require"dapui".toggle()<cr>', {})
-api.nvim_set_keymap('n', '\'fe', '<cmd> lua require"dapui".float_element(nil, {width=100, height=10, enter=true})<cr>', {nowait=true})
+api.nvim_set_keymap('n', '\'fe', '<cmd> lua require"dapui".float_element(nil, {width=60, height=20, enter=true})<cr>', {nowait=true})
 
 -- lsp
 vim.diagnostic.config({float={border="single"}})
