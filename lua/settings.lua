@@ -7,33 +7,33 @@ opt.hlsearch = true -- Set highlight on search
 opt.number = true -- Make line numbers default
 opt.tabstop = 4 -- set ts=4
 opt.sw = 4 -- set sw=4
--- opt.mouse = 'a' -- Enable mouse mode
+opt.mouse = 'a' -- Enable mouse mode
 opt.ignorecase = true -- Case insensitive searching unless /C or capital search
 opt.signcolumn = 'yes' -- Always show sign column
 opt.clipboard = 'unnamedplus' -- AAccess system clipboard
 opt.autochdir = true
 -- http://vimdoc.sourceforge.net/htmldoc/change.html#fo-table
 opt.formatoptions = 'r'
+opt.autoread = true
+
+-- Check if we need to reload the file when it changed
+api.nvim_create_autocmd("BufEnter", { command = [[:checktime]] })
 
 -- debug
 api.nvim_set_keymap('n', '\'d', '<cmd> lua require"dap".continue()<cr>', {})
 api.nvim_set_keymap('n', '\'b', '<cmd> lua require"dap".toggle_breakpoint()<cr>', {})
 api.nvim_set_keymap('n', '\'l', '<cmd> lua require"dap".list_breakpoints()<cr>', {})
-api.nvim_set_keymap('n', '\'c', '<cmd> lua require"dap".clear_breakpoints()<cr>', {}) api.nvim_set_keymap('n', '\'t', '<cmd> lua require"dap".terminate()<cr>', {})
+api.nvim_set_keymap('n', '\'c', '<cmd> lua require"dap".clear_breakpoints()<cr>', {}) 
+api.nvim_set_keymap('n', '\'t', '<cmd> lua require"dap".terminate()<cr>', {})
 
 -- dapui
-api.nvim_set_keymap('n', '\'uo', '<cmd> lua require"dapui".open()<cr>', {})
-api.nvim_set_keymap('n', '\'uc', '<cmd> lua require"dapui".close()<cr>', {})
+api.nvim_set_keymap('n', '\'ut', '<cmd> lua require"dapui".toggle()<cr>', {})
+api.nvim_set_keymap('n', '\'fe', '<cmd> lua require"dapui".float_element(nil, {width=100, height=10, enter=true})<cr>', {nowait=true})
 
 -- lsp
 vim.diagnostic.config({float={border="single"}})
 api.nvim_set_keymap('n', '\'g', '<cmd> lua vim.lsp.buf.definition()<cr>', {})
 api.nvim_set_keymap('n', '\'r', '<cmd> lua vim.lsp.buf.references({float=true})<cr>', {})
-vim.lsp.handlers["textDocument/references"] = vim.lsp.with(
-	vim.lsp.handlers.references, {
-		border = "single"
-	}
-)
 api.nvim_set_keymap('n', '\'f', '<cmd> lua vim.diagnostic.open_float()<cr>', {})
 api.nvim_set_keymap('n', '\'el', '<cmd> lua vim.diagnostic.setloclist()<cr>', {})
 api.nvim_set_keymap('n', '\'ep', '<cmd> lua vim.diagnostic.goto_prev()<cr><cmd> lua vim.diagnostic.open_float()<cr>', {})
@@ -56,6 +56,8 @@ end
 -- nvim-tree
 api.nvim_set_keymap('n', '\\', '<cmd> NvimTreeToggle<cr>', {nowait = true})
 api.nvim_set_keymap('n', '<C-c>', '<cmd> bd<cr>', {nowait = true})
+api.nvim_set_keymap('n', '<C-q>', '<cmd> q<cr>', {nowait = true})
+
 
 -- toggleterm
 api.nvim_set_keymap('n', '<C-\\>', '<cmd> ToggleTerm<cr>', {nowait = true})

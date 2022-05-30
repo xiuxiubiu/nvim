@@ -35,8 +35,8 @@ dapui.setup({
     position = "bottom", -- Can be "left", "right", "top", "bottom"
   },
   floating = {
-    max_height = nil, -- These can be integers or a float between 0 and 1.
-    max_width = nil, -- Floats will be treated as percentage of your screen.
+    max_height = 0.8, -- These can be integers or a float between 0 and 1.
+    max_width = 0.8, -- Floats will be treated as percentage of your screen.
     border = "single", -- Border style. Can be "single", "double" or "rounded"
     mappings = {
       close = { "q", "<Esc>" },
@@ -49,13 +49,13 @@ dapui.setup({
 })
 
 dap.listeners.after.event_initialized['dapui_config'] = function()
-	dapui.open()
+	dapui.open("tray")
 end
 
-dap.listeners.before.event_terminated['dapui_config'] = function()
-	dapui.close()
-end
+-- dap.listeners.before.event_terminated['dapui_config'] = function()
+-- 	dapui.close()
+-- end
 
-dap.listeners.before.event_exited['dapui_config'] = function()
-	dapui.close()
-end
+-- dap.listeners.before.event_exited['dapui_config'] = function()
+-- 	dapui.close()
+-- end
