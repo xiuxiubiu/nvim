@@ -1,13 +1,11 @@
 vim.fn.sign_define('DapBreakpoint', {text='●', texthl='', linehl='', numhl=''})
 
 local dap = require'dap'
-
 dap.adapters.python = {
 	type = 'executable';
 	command = os.getenv('HOME') .. '/.virtualenvs/debugpy/bin/python';
 	args = { '-m', "debugpy.adapter" }
 }
-local dap = require('dap')
 dap.configurations.python = {
   {
     -- The first three options are required by nvim-dap type = 'python'; -- the type here established the link to the adapter definition: `dap.adapters.python`

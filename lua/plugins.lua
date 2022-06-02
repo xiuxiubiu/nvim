@@ -156,5 +156,19 @@ packer.startup {
 			end
 		}
 
+		-- formatter
+		use {
+			'mhartington/formatter.nvim',
+			config = function()
+				require'formatter'.setup {
+					filetype = {
+						go = {
+							require'formatter.filetypes.go'.goimports
+						}
+					}
+				}
+			end
+		}
+
 	end
 }

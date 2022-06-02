@@ -7,7 +7,7 @@ opt.hlsearch = true -- Set highlight on search
 opt.number = true -- Make line numbers default
 opt.tabstop = 4 -- set ts=4
 opt.sw = 4 -- set sw=4
-opt.mouse = 'a' -- Enable mouse mode
+-- opt.mouse = 'a' -- Enable mouse mode
 opt.ignorecase = true -- Case insensitive searching unless /C or capital search
 opt.signcolumn = 'yes' -- Always show sign column
 opt.clipboard = 'unnamedplus' -- AAccess system clipboard
@@ -19,16 +19,21 @@ opt.autoread = true
 -- Check if we need to reload the file when it changed
 api.nvim_create_autocmd("BufEnter", { command = [[:checktime]] })
 
+-- autoformat
+api.nvim_create_autocmd("BufWritePost", { command = [[:FormatWrite]], pattern = {'*.go'} })
+
 -- debug
 api.nvim_set_keymap('n', '\'d', '<cmd> lua require"dap".continue()<cr>', {})
 api.nvim_set_keymap('n', '\'b', '<cmd> lua require"dap".toggle_breakpoint()<cr>', {})
 api.nvim_set_keymap('n', '\'l', '<cmd> lua require"dap".list_breakpoints()<cr>', {})
 api.nvim_set_keymap('n', '\'c', '<cmd> lua require"dap".clear_breakpoints()<cr>', {}) 
 api.nvim_set_keymap('n', '\'t', '<cmd> lua require"dap".terminate()<cr>', {})
+api.nvim_set_keymap('n', '\'ro', '<cmd> lua require"dap".repl.open()<cr>', {})
+api.nvim_set_keymap('n', '\'rc', '<cmd> lua require"dap".repl.close()<cr>', {})
 
 -- dapui
 api.nvim_set_keymap('n', '\'ut', '<cmd> lua require"dapui".toggle()<cr>', {})
-api.nvim_set_keymap('n', '\'fe', '<cmd> lua require"dapui".float_element(nil, {width=60, height=20, enter=true})<cr>', {nowait=true})
+api.nvim_set_keymap('n', '\'fe', '<cmd> lua require"dapui".float_element(nil, {width=200, height=40, enter=true})<cr>', {nowait=true})
 
 -- lsp
 vim.diagnostic.config({float={border="single"}})
