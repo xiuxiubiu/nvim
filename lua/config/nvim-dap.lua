@@ -1,5 +1,3 @@
-vim.fn.sign_define('DapBreakpoint', {text='●', texthl='', linehl='', numhl=''})
-
 local dap = require'dap'
 dap.adapters.python = {
 	type = 'executable';

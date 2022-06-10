@@ -1,6 +1,5 @@
 local packer = require'packer'
 
--- packer initialize
 local conf = {
 	display = {
 		open_fn = function()

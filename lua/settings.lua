@@ -1,6 +1,10 @@
 local api = vim.api
 local g = vim.g
 local opt = vim.opt
+local fn = vim.fn
+
+-- breakpoint
+fn.sign_define('DapBreakpoint', {text='●', texthl='', linehl='', numhl=''})
 
 opt.termguicolors = true -- Enable colors in termimal
 opt.hlsearch = true -- Set highlight on search
@@ -20,10 +24,9 @@ api.nvim_create_autocmd("BufEnter", { command = [[:checktime]] })
 api.nvim_create_autocmd("BufWritePost", { command = [[:FormatWrite]], pattern = {'*.go'} })
 
 -- debug
-api.nvim_set_keymap('n', '\'d', '<cmd> lua require"dap".continue()<cr>', {nowait = true})
+api.nvim_set_keymap('n', '\'d', '<cmd> lua require"dap".continue()<cr>', {})
 api.nvim_set_keymap('n', '\'b', '<cmd> lua require"dap".toggle_breakpoint()<cr>', {nowait = true})
-api.nvim_set_keymap('n', '\'l', '<cmd> lua require"dap".list_breakpoints()<cr>', {nowait = true})
-api.nvim_set_keymap('n', '\'c', '<cmd> lua require"dap".clear_breakpoints()<cr>', {nowait = true}) 
+api.nvim_set_keymap('n', '\'cl', '<cmd> lua require"dap".clear_breakpoints()<cr>', {nowait = true}) 
 api.nvim_set_keymap('n', '\'t', '<cmd> lua require"dap".terminate()<cr>', {nowait = true})
 api.nvim_set_keymap('n', '\'ro', '<cmd> lua require"dap".repl.open()<cr>', {nowait = true})
 api.nvim_set_keymap('n', '\'rc', '<cmd> lua require"dap".repl.close()<cr>', {nowait = true})
@@ -31,12 +34,15 @@ api.nvim_set_keymap('n', '\'rc', '<cmd> lua require"dap".repl.close()<cr>', {now
 -- dapui
 api.nvim_set_keymap('n', '\'ut', '<cmd> lua require"dapui".toggle()<cr>', {nowait = true})
 api.nvim_set_keymap('n', '\'fe', '<cmd> lua require"dapui".float_element(nil, {width=200, height=40, enter=true})<cr>', {nowait=true})
+api.nvim_set_keymap('n', '\'ue', '<cmd> lua require"dapui".eval()<cr>', {nowait=true})
 
 -- lsp
 vim.diagnostic.config({float={border="single"}})
+api.nvim_set_keymap('n', '\'lr', '<cmd> lua vim.lsp.buf.rename()<cr>', {nowait = true})
+api.nvim_set_keymap('n', '\'ca', '<cmd> lua vim.lsp.buf.code_action()<cr>', {nowait = true})
 api.nvim_set_keymap('n', '\'g', '<cmd> lua vim.lsp.buf.definition()<cr>', {nowait = true})
-api.nvim_set_keymap('n', '\'r', '<cmd> lua vim.lsp.buf.references({float=true})<cr>', {nowait = true})
-api.nvim_set_keymap('n', '\'f', '<cmd> lua vim.diagnostic.open_float()<cr>', {nowait = true})
+api.nvim_set_keymap('n', '\'r', '<cmd> lua vim.lsp.buf.references()<cr>', {})
+api.nvim_set_keymap('n', '\'f', '<cmd> lua vim.diagnostic.open_float()<cr>', {})
 api.nvim_set_keymap('n', '\'el', '<cmd> lua vim.diagnostic.setloclist()<cr>', {nowait = true})
 api.nvim_set_keymap('n', '\'ep', '<cmd> lua vim.diagnostic.goto_prev()<cr><cmd> lua vim.diagnostic.open_float()<cr>', {nowait = true})
 api.nvim_set_keymap('n', '\'en', '<cmd> lua vim.diagnostic.goto_next()<cr><cmd> lua vim.diagnostic.open_float()<cr>', {nowait = true})
