@@ -21,7 +21,14 @@ opt.formatoptions = 'r'
 api.nvim_create_autocmd("BufEnter", { command = [[:checktime]] })
 
 -- autoformat
-api.nvim_create_autocmd("BufWritePost", { command = [[:FormatWrite]], pattern = {'*.go'} })
+api.nvim_create_autocmd("BufWritePost", { command = [[:FormatWrite]], pattern = {'*.go', '*.rs'} })
+
+-- change english
+api.nvim_create_autocmd("InsertLeave", { 
+	command = [[
+		:lua vim.fn.system('/usr/local/bin/im-select com.apple.keylayout.ABC')
+	]]
+})
 
 -- debug
 api.nvim_set_keymap('n', '\'d', '<cmd> lua require"dap".continue()<cr>', {})

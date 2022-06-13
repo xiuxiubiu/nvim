@@ -10,3 +10,9 @@ then
     export VIMRUNTIME=/usr/share/vim/vim82
 fi
 ```
+
+## lsp
+assembly
+```shell
+cargo install asm-lsp
+```

@@ -163,6 +163,9 @@ packer.startup {
 					filetype = {
 						go = {
 							require'formatter.filetypes.go'.goimports
+						},
+						rust = {
+							require'formatter.filetypes.rust'.rustfmt
 						}
 					}
 				}
