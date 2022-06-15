@@ -87,3 +87,8 @@ api.nvim_set_keymap('x', '<C-_>', '<esc><cmd>lua require"Comment.api".toggle_lin
 
 -- {}
 api.nvim_set_keymap('i', '{<cr>', '{<cr>}<esc>O', {nowait = true})
+
+-- git
+api.nvim_set_keymap('n', 'g]', '<cmd>Gitsigns next_hunk<cr>', {nowait = true})
+api.nvim_set_keymap('n', 'g[', '<cmd>Gitsigns prev_hunk<cr>', {nowait = true})
+api.nvim_set_keymap('n', 'gd', '<cmd>Gitsigns diffthis<cr>', {nowait = true})
