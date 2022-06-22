@@ -12,8 +12,9 @@ dap.configurations.c = {
     type = 'lldb',
     request = 'launch',
     program = function()
-		local outfile = './a.out'
-		vim.fn.system('cc -g ' .. vim.fn.buffer_name() .. ' -o ' .. outfile)
+		local outfile = string.match(vim.fn.expand('%'), '(.+)/[^/]*%.%w+$') .. '/a.out'
+		local flags = vim.fn.input('build flags: ', '', 'file')
+		vim.fn.system('cc -g ' .. vim.fn.buffer_name() .. ' ' .. flags .. ' -o ' .. outfile)
       	return outfile
     end,
     cwd = '${workspaceFolder}',

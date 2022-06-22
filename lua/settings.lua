@@ -45,11 +45,11 @@ api.nvim_set_keymap('n', '\'ue', '<cmd> lua require"dapui".eval()<cr>', {nowait=
 
 -- lsp
 vim.diagnostic.config({float={border="single"}})
-api.nvim_set_keymap('n', '\'lr', '<cmd> lua vim.lsp.buf.rename()<cr>', {nowait = true})
+api.nvim_set_keymap('n', '\'rn', '<cmd> lua vim.lsp.buf.rename()<cr>', {nowait = true})
 api.nvim_set_keymap('n', '\'ca', '<cmd> lua vim.lsp.buf.code_action()<cr>', {nowait = true})
 api.nvim_set_keymap('n', '\'g', '<cmd> lua vim.lsp.buf.definition()<cr>', {nowait = true})
-api.nvim_set_keymap('n', '\'r', '<cmd> lua vim.lsp.buf.references()<cr>', {})
-api.nvim_set_keymap('n', '\'f', '<cmd> lua vim.diagnostic.open_float()<cr>', {})
+api.nvim_set_keymap('n', '\'rf', '<cmd> lua vim.lsp.buf.references()<cr>', {nowait = true})
+api.nvim_set_keymap('n', '\'ei', '<cmd> lua vim.diagnostic.open_float()<cr>', {nowait = true})
 api.nvim_set_keymap('n', '\'el', '<cmd> lua vim.diagnostic.setloclist()<cr>', {nowait = true})
 api.nvim_set_keymap('n', '\'ep', '<cmd> lua vim.diagnostic.goto_prev()<cr><cmd> lua vim.diagnostic.open_float()<cr>', {nowait = true})
 api.nvim_set_keymap('n', '\'en', '<cmd> lua vim.diagnostic.goto_next()<cr><cmd> lua vim.diagnostic.open_float()<cr>', {nowait = true})
