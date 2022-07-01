@@ -11,8 +11,22 @@ then
 fi
 ```
 
-## lsp
-assembly
+## golang tools
 ```shell
-cargo install asm-lsp
+go install golang.org/x/tools/gopls@latest
+go install golang.org/x/tools/cmd/goimports@latest
+go install github.com/go-delve/delve/cmd/dlv@latest
 ```
+
+## check provider
+```
+checkhealth provider
+```
+
+## python3
+```
+pip3 install neovim
+```
+
+## nvim-spectre
+https://github.com/nvim-pack/nvim-spectre
