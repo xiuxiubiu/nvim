@@ -11,6 +11,12 @@ then
 fi
 ```
 
+## VI/VIM error
+```
+E10: \ should be followed by /, ? or &
+https://vi.stackexchange.com/questions/19148/vim-u-vimrc-gives-error
+```
+
 ## golang tools
 ```shell
 go install golang.org/x/tools/gopls@latest
@@ -25,6 +31,7 @@ checkhealth provider
 
 ## python3
 ```
+apt-get install python3-distutils
 pip3 install neovim
 ```
 

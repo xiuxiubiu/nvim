@@ -2,6 +2,7 @@ local api = vim.api
 local g = vim.g
 local opt = vim.opt
 local fn = vim.fn
+local util = vim.util
 
 -- breakpoint
 fn.sign_define('DapBreakpoint', {text='●', texthl='', linehl='', numhl=''})
@@ -60,6 +61,30 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
 		border = "single"
 	}
 )
+local function hover_wrap(_, method, result)
+    util.focusable_float(method, function()
+        if not (result and result.contents) then
+            -- return { 'No information available' }
+            return
+        end
+        local markdown_lines = util.convert_input_to_markdown_lines(result.contents)
+        markdown_lines = util.trim_empty_lines(markdown_lines)
+        if vim.tbl_isempty(markdown_lines) then
+            -- return { 'No information available' }
+            return
+        end
+        local bufnr, winnr = util.fancy_floating_markdown(markdown_lines)
+        util.close_preview_autocmd({"CursorMoved", "BufHidden", "InsertCharPre"}, winnr)
+        local hover_len = #vim.api.nvim_buf_get_lines(bufnr,0,-1,false)[1]
+        local win_width = vim.api.nvim_win_get_width(0)
+        if hover_len > win_width then
+            vim.api.nvim_win_set_width(winnr,math.min(hover_len,win_width))
+            vim.api.nvim_win_set_height(winnr,math.ceil(hover_len/win_width))
+            vim.wo[winnr].wrap = true
+        end
+        return bufnr, winnr
+    end)
+end
 
 -- buffers
 api.nvim_set_keymap('n', ']', '<cmd> bn<cr>', {nowait = true})
