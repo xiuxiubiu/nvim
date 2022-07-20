@@ -48,7 +48,18 @@ cmp.setup({
 		}, {
 		{ name = 'buffer' },
 	}),
-	preselect = cmp.PreselectMode.None
+	preselect = cmp.PreselectMode.None,
+	sorting = {
+    comparators = {
+    		cmp.config.compare.offset,
+    		cmp.config.compare.exact,
+    		cmp.config.compare.score,
+    		cmp.config.compare.kind,
+    		-- cmp.config.compare.sort_text,
+    		cmp.config.compare.length,
+    		cmp.config.compare.order,
+    	}
+  	}
 })
 
 -- Set configuration for specific filetype.
