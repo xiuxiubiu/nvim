@@ -162,7 +162,12 @@ packer.startup {
 				require'formatter'.setup {
 					filetype = {
 						go = {
-							require'formatter.filetypes.go'.goimports
+							function()
+								return {
+									exe = "cargo fmt",
+									stdin = false,
+								}
+							end
 						},
 						rust = {
 							require'formatter.filetypes.rust'.rustfmt
