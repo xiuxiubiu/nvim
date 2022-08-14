@@ -106,9 +106,9 @@ api.nvim_set_keymap('n', '<C-\\>', '<cmd> ToggleTerm<cr>', {nowait = true})
 api.nvim_set_keymap('n', '<C-s>', '<cmd> lua require"spectre".open_visual({select_word = true})<cr>', {nowait = true})
 
 -- Comment
-api.nvim_set_keymap('n', '<C-_>', '<cmd> lua require"Comment.api".toggle_current_linewise()<cr><cmd> normal $<cr>', {nowait = true})
-api.nvim_set_keymap('i', '<C-_>', '<cmd> lua require"Comment.api".toggle_current_linewise()<cr><cmd> normal $<cr>', {nowait = true})
-api.nvim_set_keymap('x', '<C-_>', '<esc><cmd>lua require"Comment.api".toggle_linewise_op(vim.fn.visualmode())<cr><cmd> normal $<cr>', {nowait = true})
+api.nvim_set_keymap('n', '<C-_>', '<cmd> lua require"Comment.api".toggle.linewise.current()<cr><cmd> normal $<cr>', {nowait = true})
+api.nvim_set_keymap('i', '<C-_>', '<cmd> lua require"Comment.api".toggle.linewise.current()<cr><cmd> normal $<cr>', {nowait = true})
+api.nvim_set_keymap('x', '<C-_>', '<esc><cmd>lua require"Comment.api".toggle.linewise(vim.fn.visualmode())<cr><cmd> normal $<cr>', {nowait = true})
 
 -- {}
 api.nvim_set_keymap('i', '{<cr>', '{<cr>}<esc>O', {nowait = true})
