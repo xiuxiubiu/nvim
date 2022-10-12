@@ -129,7 +129,7 @@ packer.startup {
 		-- toggleterm
 		use {
 			'akinsho/toggleterm.nvim', 
-			tag = 'v1.*', 
+			tag = 'main', 
 			config = function()
   				require'config.toggleterm'
 			end
