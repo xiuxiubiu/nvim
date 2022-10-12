@@ -12,7 +12,7 @@ opt.hlsearch = true -- Set highlight on search
 opt.number = true -- Make line numbers default
 opt.tabstop = 4 -- set ts=4
 opt.sw = 4 -- set sw=4
--- opt.mouse = 'a' -- Enable mouse mode
+opt.mouse = '' -- Enable mouse mode
 opt.ignorecase = true -- Case insensitive searching unless /C or capital search
 opt.signcolumn = 'yes' -- Always show sign column
 opt.clipboard = 'unnamedplus' -- AAccess system clipboard opt.autochdir = true -- http://vimdoc.sourceforge.net/htmldoc/change.html#fo-table
@@ -49,7 +49,6 @@ vim.diagnostic.config({float={border="single"}})
 api.nvim_set_keymap('n', '\'rn', '<cmd> lua vim.lsp.buf.rename()<cr>', {nowait = true})
 api.nvim_set_keymap('n', '\'ca', '<cmd> lua vim.lsp.buf.code_action()<cr>', {nowait = true})
 api.nvim_set_keymap('n', '\'g', '<cmd> lua vim.lsp.buf.definition()<cr>', {nowait = true})
-api.nvim_set_keymap('n', '\'rg', '<cmd> lua vim.lsp.buf.type_definition()<cr>', {nowait = true})
 api.nvim_set_keymap('n', '\'rf', '<cmd> lua vim.lsp.buf.references()<cr>', {nowait = true})
 api.nvim_set_keymap('n', '\'ei', '<cmd> lua vim.diagnostic.open_float()<cr>', {nowait = true})
 api.nvim_set_keymap('n', '\'el', '<cmd> lua vim.diagnostic.setloclist()<cr>', {nowait = true})
