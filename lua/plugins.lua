@@ -174,6 +174,9 @@ packer.startup {
 									stdin = true,
 								}
 							end
+						},
+						c = {
+							require'formatter.filetypes.c'.clangformat
 						}
 					}
 				}

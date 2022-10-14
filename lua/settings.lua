@@ -22,7 +22,7 @@ opt.formatoptions = 'r'
 api.nvim_create_autocmd("BufEnter", { command = [[:checktime]] })
 
 -- autoformat
-api.nvim_create_autocmd("BufWritePost", { command = [[:FormatWrite]], pattern = {'*.go', '*.rs'} })
+api.nvim_create_autocmd("BufWritePost", { command = [[:FormatWrite]], pattern = {'*.go', '*.rs', '*.c'} })
 
 -- change english
 api.nvim_create_autocmd("InsertLeave", { 
