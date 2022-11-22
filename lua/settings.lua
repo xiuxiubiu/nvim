@@ -17,6 +17,7 @@ opt.ignorecase = true -- Case insensitive searching unless /C or capital search
 opt.signcolumn = 'yes' -- Always show sign column
 opt.clipboard = 'unnamedplus' -- AAccess system clipboard opt.autochdir = true -- http://vimdoc.sourceforge.net/htmldoc/change.html#fo-table
 opt.formatoptions = 'r'
+opt.splitbelow = true
 
 -- Check if we need to reload the file when it changed
 api.nvim_create_autocmd("BufEnter", { command = [[:checktime]] })

@@ -44,51 +44,51 @@ dap.configurations.c = {
 }
 
 -- rust
-dap.configurations.rust = {
-	{
-    	name = 'Launch',
-    	type = 'lldb',
-    	request = 'launch',
-    	program = function()
-			local findFile = 'Cargo.toml'
-			vim.fn.chdir(string.match(vim.fn.expand('%'), '(.+)/[^/]*%.%w+$'))
-			while (true) do
-				local currentPath = vim.fn.getcwd()
-				if (currentPath == '/') then
-					return vim.fn.input('Path to executable: ', '/', 'file')
-				end
-				if (findFile == vim.fn.findfile(findFile)) then
-					vim.fn.system('cargo build')
-					return vim.fn.input('executable: ', currentPath .. '/target/debug/', 'file')
-				end
-				vim.fn.chdir('..')
-			end
-    	end,
-    	cwd = '${workspaceFolder}',
-    	stopOnEntry = false,
-    	args = {},
-
-    	-- 💀
-    	-- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
-    	--
-    	--    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-    	--
-    	-- Otherwise you might get the following error:
-    	--
-    	--    Error on launch: Failed to attach to the target process
-    	--
-    	-- But you should be aware of the implications:
-    	-- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
-    	-- runInTerminal = false,
-
-    	-- 💀
-    	-- If you use `runInTerminal = true` and resize the terminal window,
-    	-- lldb-vscode will receive a `SIGWINCH` signal which can cause problems
-    	-- To avoid that uncomment the following option
-    	-- See https://github.com/mfussenegger/nvim-dap/issues/236#issuecomment-1066306073
-    	-- postRunCommands = {'process handle -p true -s false -n false SIGWINCH'}
-	},
-}
+-- dap.configurations.rust = {
+-- 	{
+--     	name = 'Launch',
+--     	type = 'lldb',
+--     	request = 'launch',
+--     	program = function()
+-- 			local findFile = 'Cargo.toml'
+-- 			vim.fn.chdir(string.match(vim.fn.expand('%'), '(.+)/[^/]*%.%w+$'))
+-- 			while (true) do
+-- 				local currentPath = vim.fn.getcwd()
+-- 				if (currentPath == '/') then
+-- 					return vim.fn.input('Path to executable: ', '/', 'file')
+-- 				end
+-- 				if (findFile == vim.fn.findfile(findFile)) then
+-- 					vim.fn.system('cargo build')
+-- 					return vim.fn.input('executable: ', currentPath .. '/target/debug/', 'file')
+-- 				end
+-- 				vim.fn.chdir('..')
+-- 			end
+--     	end,
+--     	cwd = '${workspaceFolder}',
+--     	stopOnEntry = false,
+--     	args = {},
+--
+--     	-- 💀
+--     	-- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
+--     	--
+--     	--    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+--     	--
+--     	-- Otherwise you might get the following error:
+--     	--
+--     	--    Error on launch: Failed to attach to the target process
+--     	--
+--     	-- But you should be aware of the implications:
+--     	-- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
+--     	-- runInTerminal = false,
+--
+--     	-- 💀
+--     	-- If you use `runInTerminal = true` and resize the terminal window,
+--     	-- lldb-vscode will receive a `SIGWINCH` signal which can cause problems
+--     	-- To avoid that uncomment the following option
+--     	-- See https://github.com/mfussenegger/nvim-dap/issues/236#issuecomment-1066306073
+--     	-- postRunCommands = {'process handle -p true -s false -n false SIGWINCH'}
+-- 	},
+-- }
 
 
 dap.adapters.go = function(callback, config)

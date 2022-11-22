@@ -205,5 +205,14 @@ packer.startup {
 			end
 		}
 
+		-- rust-tools
+		use 'nvim-lua/plenary.nvim'
+		use {
+			'simrat39/rust-tools.nvim',
+			config = function()
+				require'config.rust-tool'
+			end
+		}
+
 	end
 }
