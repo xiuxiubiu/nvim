@@ -214,5 +214,19 @@ packer.startup {
 			end
 		}
 
+		-- dressing.nvim
+		use {
+			'stevearc/dressing.nvim',
+			-- config = function()
+			-- 	require 'config.dressing'
+			-- end
+		}
+
+		use {
+  			'nvim-telescope/telescope.nvim',
+			tag = '0.1.0',
+  			requires = { {'nvim-lua/plenary.nvim'} }
+		}
+
 	end
 }

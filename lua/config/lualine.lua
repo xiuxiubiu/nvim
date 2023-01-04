@@ -352,4 +352,3 @@ require('lualine').setup {
   },
 }
 
-
