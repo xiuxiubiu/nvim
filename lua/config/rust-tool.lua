@@ -11,6 +11,9 @@ rt.setup({
       -- Code action groups
       vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
     end,
+	cmd = {
+		"rust-analyzer-nightly",
+	}
   },
   tools = {
 	-- how to execute terminal commands
