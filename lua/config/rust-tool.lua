@@ -12,7 +12,7 @@ rt.setup({
       vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
     end,
 	cmd = {
-		"rust-analyzer-nightly",
+		"rust-analyzer",
 	}
   },
   tools = {
