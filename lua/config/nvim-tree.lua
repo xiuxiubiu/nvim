@@ -9,7 +9,7 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
   open_on_setup = false,
   open_on_setup_file = false,
   open_on_tab = true,
-  focus_empty_on_setup = false,
+  -- focus_empty_on_setup = false,
   ignore_buf_on_tab_change = {},
   sort_by = "name",
   root_dirs = {},
