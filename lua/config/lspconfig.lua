@@ -26,5 +26,5 @@ lspconfig.gopls.setup {
 
 -- rust-analyzer
 -- lspconfig.rust_analyzer.setup {
--- 	cmd = {"ra-multiplex"},
+-- 	cmd = {"rust-analyzer"},
 -- }
