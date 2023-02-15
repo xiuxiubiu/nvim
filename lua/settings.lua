@@ -119,3 +119,7 @@ api.nvim_set_keymap('n', 'g]', '<cmd>Gitsigns next_hunk<cr>', {nowait = true})
 api.nvim_set_keymap('n', 'g[', '<cmd>Gitsigns prev_hunk<cr>', {nowait = true})
 api.nvim_set_keymap('n', 'gd', '<cmd>Gitsigns diffthis<cr>', {nowait = true})
 api.nvim_set_keymap('n', 'gi', '<cmd>lua require"gitsigns".blame_line({full = true})<cr>', {nowait = true})
+
+-- replace
+api.nvim_set_keymap('n', 'Rr', '<cmd>lua require"spectre.actions".run_replace()<cr>', {nowait = true})
+api.nvim_set_keymap('n', 'Rcr', '<cmd>lua require"spectre.actions".run_current_replace()<cr>', {nowait = true})
