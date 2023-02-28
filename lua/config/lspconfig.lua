@@ -2,7 +2,8 @@ local lspconfig = require'lspconfig'
 local util = require'lspconfig/util'
 
 -- ccls
-lspconfig.clangd.setup {}
+-- lspconfig.clangd.setup {}
+lspconfig.ccls.setup {}
 
 -- gopls
 lspconfig.gopls.setup {

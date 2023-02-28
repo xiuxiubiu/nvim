@@ -14,13 +14,13 @@ rt.setup({
 	cmd = {
 		"rust-analyzer",
 	},
-	settings = {
-		['rust-analyzer'] = {
-			checkOnSave = {
-				allTargets = false,
-			},
-		},
-	},
+	-- settings = {
+	-- 	['rust-analyzer'] = {
+	-- 		checkOnSave = {
+	-- 			allTargets = false,
+	-- 		},
+	-- 	},
+	-- },
   },
   tools = {
 	-- how to execute terminal commands
