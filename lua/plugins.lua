@@ -18,6 +18,7 @@ packer.startup {
 		-- Colorscheme
 		use {
 			'projekt0n/github-nvim-theme',
+			tag = '0.0.x',
 			config = function()
 				require'github-theme'.setup()
 			end
