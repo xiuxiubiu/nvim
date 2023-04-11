@@ -21,14 +21,15 @@ packer.startup {
 			tag = '0.0.x',
 			config = function()
 				require'github-theme'.setup()
+				vim.cmd('colorscheme github_dark')
 			end
 		}
 	
 		-- nvim-tree
 		use {
-			'kyazdani42/nvim-tree.lua',
+			'nvim-tree/nvim-tree.lua',
 			requires = {
-				'kyazdani42/nvim-web-devicons', -- optional, for file icon
+				'nvim-tree/nvim-web-devicons', -- optional, for file icon
 			},
 			tag = 'nightly', -- optional, updated every week.
 			config = function()
@@ -39,8 +40,8 @@ packer.startup {
 		-- bufferline
 		use {
 			'akinsho/bufferline.nvim',
-			tag = 'v2.*',
-			requires = 'kyazdani42/nvim-web-devicons',
+			tag = 'v3.*',
+			requires = 'nvim-tree/nvim-web-devicons',
 			config = function()
 				require'config.bufferline'
 			end
