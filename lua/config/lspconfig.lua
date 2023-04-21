@@ -49,4 +49,15 @@ lspconfig.lua_ls.setup {
 }
 
 -- typescript-language-server
-lspconfig.tsserver.setup {}
+-- lspconfig.tsserver.setup {}
+
+-- volar
+require'lspconfig'.volar.setup {
+    filetypes = {
+        'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue',
+        'json'
+    }
+}
+
+-- html
+lspconfig.html.setup {}

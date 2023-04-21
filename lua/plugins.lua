@@ -121,39 +121,7 @@ packer.startup {
         -- formatter
         use {
             'mhartington/formatter.nvim',
-            config = function()
-                require'formatter'.setup {
-                    filetype = {
-                        go = {require'formatter.filetypes.go'.goimports},
-                        rust = {
-                            function()
-                                return {
-                                    exe = "rustfmt",
-                                    args = {"--edition=2021"},
-                                    stdin = true
-                                }
-                            end
-                        },
-                        c = {require'formatter.filetypes.c'.clangformat},
-                        lua = {require'formatter.filetypes.lua'.luaformat},
-                        html = {
-                            function()
-                                return {
-                                    exe = "tidy",
-                                    args = {
-                                        "-quiet", "-modify", "--indent auto",
-                                        "--indent-with-tabs yes"
-                                    },
-                                    stdin = true
-                                }
-                            end
-                        },
-                        javascript = {
-                            require'formatter.filetypes.javascript'.prettier
-                        }
-                    }
-                }
-            end
+            config = function() require "config.formatter" end
         }
 
         -- nvim-bqf	
