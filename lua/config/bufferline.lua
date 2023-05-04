@@ -9,8 +9,8 @@ require('bufferline').setup {
         -- and so changing this is NOT recommended, this is intended
         -- as an escape hatch for people who cannot bear it for whatever reason
         -- indicator_icon = '▎',
-        indicator = {style = '▎'},
-        buffer_close_icon = '',
+        indicator = {style = 'icon'},
+        buffer_close_icon = '',
         modified_icon = '●',
         close_icon = '',
         left_trunc_marker = '',
@@ -19,20 +19,20 @@ require('bufferline').setup {
         --- Please note some names can/will break the
         --- bufferline so use this at your discretion knowing that it has
         --- some limitations that will *NOT* be fixed.
-        name_formatter = function(buf) -- buf contains a "name", "path" and "bufnr"
-            -- remove extension from markdown files for example
-            if buf.name:match('%.md') then
-                return vim.fn.fnamemodify(buf.name, ':t:r')
-            end
-        end,
+        -- name_formatter = function(buf) -- buf contains a "name", "path" and "bufnr"
+        --     -- remove extension from markdown files for example
+        --     if buf.name:match('%.md') then
+        --         return vim.fn.fnamemodify(buf.name, ':t:r')
+        --     end
+        -- end,
         max_name_length = 18,
         max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
         tab_size = 18,
-        diagnostics = "nvm_lsp", -- false | "nvim_lsp" | "coc",
+        diagnostics = "nvim_lsp", -- false | "nvim_lsp" | "coc",
         diagnostics_update_in_insert = false,
-        diagnostics_indicator = function(count, level, diagnostics_dict, context)
-            return "(" .. count .. ")"
-        end,
+        -- diagnostics_indicator = function(count, level, diagnostics_dict, context)
+        --     return "(" .. count .. ")"
+        -- end,
         -- NOTE: this will be called a lot so don't do any heavy processing here
         custom_filter = function(buf_number, buf_numbers)
             -- filter out filetypes you don't want to see

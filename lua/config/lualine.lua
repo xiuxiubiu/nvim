@@ -8,17 +8,17 @@ local colors = {
     green = '#8ec07c'
 }
 
-local theme = {
-    normal = {
-        a = {fg = colors.white, bg = colors.black},
-        b = {fg = colors.white, bg = colors.grey},
-        c = {fg = colors.black, bg = colors.white},
-        z = {fg = colors.white, bg = colors.black}
-    },
-    insert = {a = {fg = colors.black, bg = colors.light_green}},
-    visual = {a = {fg = colors.black, bg = colors.orange}},
-    replace = {a = {fg = colors.black, bg = colors.green}}
-}
+-- local theme = {
+--     normal = {
+--         a = {fg = colors.white, bg = colors.black},
+--         b = {fg = colors.white, bg = colors.grey},
+--         c = {fg = colors.black, bg = colors.white},
+--         z = {fg = colors.white, bg = colors.black}
+--     },
+--     insert = {a = {fg = colors.black, bg = colors.light_green}},
+--     visual = {a = {fg = colors.black, bg = colors.orange}},
+--     replace = {a = {fg = colors.black, bg = colors.green}}
+-- }
 local theme = 'nord'
 
 local empty = require('lualine.component'):extend()
@@ -73,8 +73,8 @@ end
 require('lualine').setup {
     options = {
         theme = theme,
-        component_separators = '',
-        section_separators = {left = '', right = ''}
+        component_separators = ''
+        -- section_separators = {left = '', right = ''}
     },
     sections = process_sections {
         lualine_a = {'mode'},

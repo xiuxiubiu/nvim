@@ -1,7 +1,7 @@
 local rt = require("rust-tools")
-local utils = require("rust-tools.utils.utils")
-local latest_buf_id = nil
-local executor = require("rust-tools.executors").termopen
+-- local utils = require("rust-tools.utils.utils")
+-- local latest_buf_id = nil
+-- local executor = require("rust-tools.executors").termopen
 
 rt.setup({
     server = {

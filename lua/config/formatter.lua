@@ -34,7 +34,7 @@ require'formatter'.setup {
                                 "--stdin-filepath",
                                 util.escape_path(
                                     util.get_current_buffer_file_path()),
-                                "--use-tabs", "--tab-width=4",
+                                "--use-tabs", "--tab-width=2",
                                 "--vue-indent-script-and-style"
                             },
                             stdin = true,
@@ -47,7 +47,7 @@ require'formatter'.setup {
                         args = {
                             "--stdin-filepath",
                             util.escape_path(util.get_current_buffer_file_path()),
-                            "--parser", parser, "--use-tabs", "--tab-width=4",
+                            "--parser", parser, "--use-tabs", "--tab-width=2",
                             "--vue-indent-script-and-style"
                         },
                         stdin = true,
