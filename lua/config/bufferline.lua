@@ -49,6 +49,7 @@ require('bufferline').setup {
                 "wiki" then return true end
             -- filter out by it's index number in list (don't show first buffer)
             if buf_numbers[1] ~= buf_number then return true end
+            return false
         end,
         -- offsets = {{filetype = "NvimTree", text = "File Explorer" | function , text_align = "left" | "center" | "right"}},
         color_icons = true, -- true | false, -- whether or not to add the filetype icon highlights
