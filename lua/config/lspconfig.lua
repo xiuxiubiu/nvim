@@ -64,3 +64,5 @@ require'lspconfig'.denols.setup {}
 
 -- html
 lspconfig.html.setup {}
+
+require'lspconfig'.anakin_language_server.setup {}
