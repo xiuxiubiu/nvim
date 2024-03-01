@@ -2,7 +2,7 @@ local dap = require 'dap'
 
 dap.adapters.lldb = {
     type = 'executable',
-    command = '/usr/local/opt/llvm/bin/lldb-vscode',
+    command = '/opt/homebrew/opt/llvm/bin/lldb-vscode',
     name = 'lldb'
 }
 
@@ -15,7 +15,7 @@ dap.configurations.c = {
             local outfile =
                 string.match(vim.fn.expand('%'), '(.+)/[^/]*%.%w+$') .. '/a.out'
             local flags = vim.fn.input('build flags: ', '', 'file')
-            vim.fn.system('cc -g ' .. vim.fn.buffer_name() .. ' ' .. flags ..
+            vim.fn.system('clang -g ' .. vim.fn.buffer_name() .. ' ' .. flags ..
                               ' -o ' .. outfile)
             return outfile
         end,

@@ -157,5 +157,7 @@ packer.startup {
             requires = {{'nvim-lua/plenary.nvim'}}
         }
 
+        use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+
     end
 }
