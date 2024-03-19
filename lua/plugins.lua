@@ -78,7 +78,7 @@ packer.startup {
         -- nvim-dap-ui
         use {
             'rcarriga/nvim-dap-ui',
-            requires = {'mfussenegger/nvim-dap'},
+            requires = {'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio'},
             config = function() require 'config.nvim-dap-ui' end
         }
 
