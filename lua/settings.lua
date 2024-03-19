@@ -165,3 +165,11 @@ api.nvim_set_keymap('n', 'Rr',
 api.nvim_set_keymap('n', 'Rcr',
                     '<cmd>lua require"spectre.actions".run_current_replace()<cr>',
                     {nowait = true})
+
+-- telescope find file
+api.nvim_set_keymap('n', 'ts', '<cmd>Telescope<cr>', {nowait = true})
+api.nvim_set_keymap('n', 'ff', '<cmd>Telescope find_files<cr>', {nowait = true})
+api.nvim_set_keymap('n', 'fg', '<cmd>Telescope git_branches<cr>',
+                    {nowait = true})
+api.nvim_set_keymap('n', 'fb', '<cmd>Telescope buffers<cr>', {nowait = true})
+api.nvim_set_keymap('n', 'fs', '<cmd>Telescope live_grep<cr>', {nowait = true})
