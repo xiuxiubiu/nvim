@@ -8,7 +8,7 @@ require("toggleterm").setup {
     --     return vim.o.columns * 0.4
     --   end
     -- end,
-    open_mapping = [[<c-\>]],
+    open_mapping = [[tt]],
     -- on_open = fun(t: Terminal), -- function to run when the terminal opens
     -- on_close = fun(t: Terminal), -- function to run when the terminal closes
     -- on_stdout = fun(t: Terminal, job: number, data: string[], name: string) -- callback for processing output on stdout
@@ -34,7 +34,7 @@ require("toggleterm").setup {
     insert_mappings = true, -- whether or not the open mapping applies in insert mode
     terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
     persist_size = true,
-    direction = 'float', -- 'vertical' | 'horizontal' | 'tab' | 'float',
+    direction = 'horizontal', -- 'vertical' | 'horizontal' | 'tab' | 'float',
     close_on_exit = true, -- close the terminal window when the process exits
     shell = vim.o.shell, -- change the default shell
     -- This field is only relevant if direction is set to 'float'

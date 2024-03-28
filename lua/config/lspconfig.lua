@@ -60,9 +60,13 @@ lspconfig.tsserver.setup {}
 -- }
 
 -- deno
-require'lspconfig'.denols.setup {}
+-- require'lspconfig'.denols.setup {}
 
 -- html
-lspconfig.html.setup {}
+-- lspconfig.html.setup {}
 
-require'lspconfig'.anakin_language_server.setup {}
+-- python
+lspconfig.anakin_language_server.setup {}
+
+-- tailwindcss
+lspconfig.tailwindcss.setup {}

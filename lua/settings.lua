@@ -26,7 +26,7 @@ api.nvim_create_autocmd("BufEnter", {command = [[:checktime]]})
 -- autoformat
 api.nvim_create_autocmd("BufWritePost", {
     command = [[:FormatWrite]],
-    pattern = {'*.go', '*.rs', "*.lua", "*.html", "*.vue"}
+    pattern = {'*.go', '*.rs', "*.lua", "*.vue", "*.js", "*.ts"}
 })
 
 -- change english
@@ -129,7 +129,9 @@ api.nvim_set_keymap('n', '<C-c>', '<cmd> bd<cr>', {nowait = true})
 api.nvim_set_keymap('n', '<C-q>', '<cmd> q<cr>', {nowait = true})
 
 -- toggleterm
-api.nvim_set_keymap('n', '<C-\\>', '<cmd> ToggleTerm<cr>', {nowait = true})
+api.nvim_set_keymap('n', 'tt', '<cmd> ToggleTerm<cr>', {nowait = true})
+api.nvim_set_keymap('t', 'tn', '<cmd>tnoremap <Esc> <C-\\><C-n>',
+                    {nowait = true})
 
 -- spectre
 api.nvim_set_keymap('n', '<C-s>',

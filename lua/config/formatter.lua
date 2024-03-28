@@ -23,6 +23,7 @@ require'formatter'.setup {
             end
         },
         javascript = {require'formatter.filetypes.javascript'.prettier},
+        typescript = {require'formatter.filetypes.typescript'.prettier},
         vue = {
             -- require'formatter.filetypes.vue'.prettier,
             function()
