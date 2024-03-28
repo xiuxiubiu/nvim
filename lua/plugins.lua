@@ -159,5 +159,10 @@ packer.startup {
 
         use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
+        use {
+            'windwp/nvim-ts-autotag',
+            config = function() require 'config.auto-ts-tag' end
+        }
+
     end
 }

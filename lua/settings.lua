@@ -26,7 +26,7 @@ api.nvim_create_autocmd("BufEnter", {command = [[:checktime]]})
 -- autoformat
 api.nvim_create_autocmd("BufWritePost", {
     command = [[:FormatWrite]],
-    pattern = {'*.go', '*.rs', "*.lua", "*.vue", "*.js", "*.ts"}
+    pattern = {'*.go', '*.rs', "*.lua", "*.vue", "*.js", "*.ts", "*.html"}
 })
 
 -- change english
@@ -129,8 +129,8 @@ api.nvim_set_keymap('n', '<C-c>', '<cmd> bd<cr>', {nowait = true})
 api.nvim_set_keymap('n', '<C-q>', '<cmd> q<cr>', {nowait = true})
 
 -- toggleterm
-api.nvim_set_keymap('n', 'tt', '<cmd> ToggleTerm<cr>', {nowait = true})
-api.nvim_set_keymap('t', 'tn', '<cmd>tnoremap <Esc> <C-\\><C-n>',
+api.nvim_set_keymap('n', '<C-;>', '<cmd> ToggleTerm<cr>', {nowait = true})
+api.nvim_set_keymap('t', '<C-\'>', '<cmd>tnoremap <Esc> <C-\\><C-n>',
                     {nowait = true})
 
 -- spectre
@@ -147,10 +147,8 @@ api.nvim_set_keymap('i', '<C-_>',
                     {nowait = true})
 api.nvim_set_keymap('x', '<C-_>',
                     '<esc><cmd>lua require"Comment.api".toggle.linewise(vim.fn.visualmode())<cr><cmd> normal $<cr>',
-                    {nowait = true})
-
--- {}
-api.nvim_set_keymap('i', '{<cr>', '{<cr>}<esc>O', {nowait = true})
+                    {nowait = true}) -- {}
+-- api.nvim_set_keymap('i', '{<cr>', '{<cr>}<esc>O', {nowait = true})
 
 -- git
 api.nvim_set_keymap('n', 'g]', '<cmd>Gitsigns next_hunk<cr>', {nowait = true})

@@ -10,18 +10,7 @@ require'formatter'.setup {
         },
         c = {require'formatter.filetypes.c'.clangformat},
         lua = {require'formatter.filetypes.lua'.luaformat},
-        html = {
-            function()
-                return {
-                    exe = "tidy",
-                    args = {
-                        "-quiet", "-modify", "--indent auto",
-                        "--indent-with-tabs yes"
-                    },
-                    stdin = true
-                }
-            end
-        },
+        html = {require'formatter.filetypes.html'.prettier},
         javascript = {require'formatter.filetypes.javascript'.prettier},
         typescript = {require'formatter.filetypes.typescript'.prettier},
         vue = {
