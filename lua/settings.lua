@@ -26,7 +26,10 @@ api.nvim_create_autocmd("BufEnter", {command = [[:checktime]]})
 -- autoformat
 api.nvim_create_autocmd("BufWritePost", {
     command = [[:FormatWrite]],
-    pattern = {'*.go', '*.rs', "*.lua", "*.vue", "*.js", "*.ts", "*.html"}
+    pattern = {
+        '*.go', '*.rs', "*.lua", "*.vue", "*.js", "*.ts", "*.html", "*.jsx",
+        "*.tsx", "*.json", "*.css"
+    }
 })
 
 -- change english

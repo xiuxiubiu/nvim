@@ -80,8 +80,13 @@ cmp.setup.cmdline(':', {
 
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 require('lspconfig')['clangd'].setup {capabilities = capabilities}
 
 require('lspconfig')['html'].setup {capabilities = capabilities}
+
+local clientCapabilities = vim.lsp.protocol.make_client_capabilities()
+clientCapabilities.textDocument.completion.completionItem.snippetSupport = true
+require('lspconfig')['cssls'].setup {capabilities = clientCapabilities}

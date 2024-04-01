@@ -69,4 +69,18 @@ lspconfig.tsserver.setup {}
 lspconfig.anakin_language_server.setup {}
 
 -- tailwindcss
-lspconfig.tailwindcss.setup {}
+lspconfig.tailwindcss.setup {
+    filetypes = {
+        "aspnetcorerazor", "astro", "astro-markdown", "blade", "clojure",
+        "django-html", "htmldjango", "edge", "eelixir", "elixir", "ejs", "erb",
+        "eruby", "gohtml", "gohtmltmpl", "haml", "handlebars", "hbs", "html",
+        "html-eex", "heex", "jade", "leaf", "liquid", "markdown", "mdx",
+        "mustache", "njk", "nunjucks", "php", "razor", "slim", "twig", "less",
+        "postcss", "sass", "scss", "stylus", "sugarss", "javascript",
+        "javascriptreact", "reason", "rescript", "typescript",
+        "typescriptreact", "vue", "svelte", "templ"
+    }
+}
+
+-- css
+require'lspconfig'.cssls.setup {}

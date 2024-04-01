@@ -13,6 +13,14 @@ require'formatter'.setup {
         html = {require'formatter.filetypes.html'.prettier},
         javascript = {require'formatter.filetypes.javascript'.prettier},
         typescript = {require'formatter.filetypes.typescript'.prettier},
+        javascriptreact = {
+            require'formatter.filetypes.javascriptreact'.prettier
+        },
+        typescriptreact = {
+            require'formatter.filetypes.typescriptreact'.prettier
+        },
+        json = {require'formatter.filetypes.json'.prettier},
+        css = {require'formatter.filetypes.css'.prettier},
         vue = {
             -- require'formatter.filetypes.vue'.prettier,
             function()

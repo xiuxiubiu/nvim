@@ -164,5 +164,12 @@ packer.startup {
             config = function() require 'config.auto-ts-tag' end
         }
 
+        -- autopairs
+        use {
+            "windwp/nvim-autopairs",
+            event = "InsertEnter",
+            config = function() require("nvim-autopairs").setup {} end
+        }
+
     end
 }
