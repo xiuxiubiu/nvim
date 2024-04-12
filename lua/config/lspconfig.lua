@@ -3,7 +3,7 @@ local util = require 'lspconfig/util'
 
 -- ccls
 -- lspconfig.clangd.setup {}
-lspconfig.ccls.setup {}
+lspconfig.ccls.setup {offset_encoding = 'utf-16'}
 
 -- gopls
 lspconfig.gopls.setup {
