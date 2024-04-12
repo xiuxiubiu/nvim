@@ -171,8 +171,8 @@ api.nvim_set_keymap('n', 'Rcr',
 
 -- telescope find file
 api.nvim_set_keymap('n', 'ts', '<cmd>Telescope<cr>', {nowait = true})
-api.nvim_set_keymap('n', 'ff', '<cmd>Telescope find_files<cr>', {nowait = true})
-api.nvim_set_keymap('n', 'fg', '<cmd>Telescope git_branches<cr>',
+api.nvim_set_keymap('n', 'tf', '<cmd>Telescope find_files<cr>', {nowait = true})
+api.nvim_set_keymap('n', 'tg', '<cmd>Telescope git_branches<cr>',
                     {nowait = true})
-api.nvim_set_keymap('n', 'fb', '<cmd>Telescope buffers<cr>', {nowait = true})
-api.nvim_set_keymap('n', 'fs', '<cmd>Telescope live_grep<cr>', {nowait = true})
+api.nvim_set_keymap('n', 'tb', '<cmd>Telescope buffers<cr>', {nowait = true})
+api.nvim_set_keymap('n', 'ts', '<cmd>Telescope live_grep<cr>', {nowait = true})
