@@ -3,7 +3,7 @@ local util = require 'lspconfig/util'
 
 -- ccls
 -- lspconfig.clangd.setup {}
-lspconfig.ccls.setup {offset_encoding = 'utf-16'}
+lspconfig.ccls.setup {}
 
 -- gopls
 lspconfig.gopls.setup {
@@ -84,3 +84,6 @@ lspconfig.tailwindcss.setup {
 
 -- css
 require'lspconfig'.cssls.setup {}
+
+-- sql
+require'lspconfig'.sqlls.setup {}

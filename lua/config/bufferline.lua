@@ -78,4 +78,3 @@ require('bufferline').setup {
         -- end
     }
 }
-

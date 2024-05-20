@@ -36,12 +36,12 @@ packer.startup {
         }
 
         -- bufferline
-        use {
-            'akinsho/bufferline.nvim',
-            tag = 'v3.*',
-            requires = 'nvim-tree/nvim-web-devicons',
-            config = function() require 'config.bufferline' end
-        }
+        -- use {
+        --     'akinsho/bufferline.nvim',
+        --     tag = 'master',
+        --     requires = 'nvim-tree/nvim-web-devicons',
+        --     config = function() require 'config.bufferline' end
+        -- }
 
         -- Collection of configurations for the built-in LSP client
         use {
@@ -153,8 +153,9 @@ packer.startup {
 
         use {
             'nvim-telescope/telescope.nvim',
-            tag = '0.1.x',
-            requires = {{'nvim-lua/plenary.nvim'}}
+            tag = '0.1.6',
+            requires = {{'nvim-lua/plenary.nvim'}},
+            config = function() require 'config.telescope' end
         }
 
         use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}

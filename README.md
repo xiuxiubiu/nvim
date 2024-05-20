@@ -45,3 +45,10 @@ https://github.com/clangd/clangd
 https://github.com/llvm/llvm-project/tree/main/lldb/tools/lldb-vscode
 
 ## TSUpdate language
+
+## language server
+* sql (https://github.com/joe-re/sql-language-server)
+
+
+## issue
+* 
