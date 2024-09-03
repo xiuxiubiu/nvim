@@ -125,11 +125,7 @@ rt.setup({
 
     -- debugging stuff
     dap = {
-        adapter = {
-            type = "executable",
-            command = "lldb-vscode",
-            name = "rt_lldb"
-        }
+        adapter = {type = "executable", command = "lldb-dap", name = "rt_lldb"}
     }
 })
 

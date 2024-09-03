@@ -94,3 +94,6 @@ require('lspconfig')['cssls'].setup {capabilities = clientCapabilities}
 
 -- sql
 require'lspconfig'['sqlls'].setup {capabilities = capabilities}
+
+-- python
+require'lspconfig'['pyright'].setup {capabilities = capabilities}

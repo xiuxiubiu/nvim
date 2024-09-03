@@ -2,8 +2,8 @@ local lspconfig = require 'lspconfig'
 local util = require 'lspconfig/util'
 
 -- ccls
--- lspconfig.clangd.setup {}
-lspconfig.ccls.setup {}
+lspconfig.clangd.setup {}
+-- lspconfig.ccls.setup {}
 
 -- gopls
 lspconfig.gopls.setup {
@@ -66,7 +66,7 @@ lspconfig.tsserver.setup {}
 -- lspconfig.html.setup {}
 
 -- python
-lspconfig.anakin_language_server.setup {}
+lspconfig.pyright.setup {}
 
 -- tailwindcss
 lspconfig.tailwindcss.setup {
@@ -83,7 +83,26 @@ lspconfig.tailwindcss.setup {
 }
 
 -- css
-require'lspconfig'.cssls.setup {}
+require'lspconfig'.cssls.setup {
+    settings = {
+        css = {validatee = true, lint = {unknownAtRules = "ignore"}},
+        scss = {validatee = true, lint = {unknownAtRules = "ignore"}},
+        less = {validatee = true, lint = {unknownAtRules = "ignore"}}
+    }
+}
 
 -- sql
 require'lspconfig'.sqlls.setup {}
+
+-- vue
+-- require'lspconfig'.vuels.setup {}
+require'lspconfig'.volar.setup {}
+
+-- flow
+-- require'lspconfig'.flow.setup {}
+
+-- denols
+require'lspconfig'.denols.setup {}
+
+-- jdtls
+-- require'lspconfig'.jdtls.setup {}

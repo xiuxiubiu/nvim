@@ -28,7 +28,7 @@ api.nvim_create_autocmd("BufWritePost", {
     command = [[:FormatWrite]],
     pattern = {
         '*.go', '*.rs', "*.lua", "*.vue", "*.js", "*.ts", "*.html", "*.jsx",
-        "*.tsx", "*.json", "*.css"
+        "*.tsx", "*.json", "*.css", "*.java", "*.py"
     }
 })
 

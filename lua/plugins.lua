@@ -18,10 +18,9 @@ packer.startup {
         -- Colorscheme
         use {
             'projekt0n/github-nvim-theme',
-            tag = '0.0.x',
             config = function()
                 require'github-theme'.setup()
-                vim.cmd('colorscheme github_dark')
+                vim.cmd('colorscheme github_dark_dimmed')
             end
         }
 
@@ -170,6 +169,22 @@ packer.startup {
             "windwp/nvim-autopairs",
             event = "InsertEnter",
             config = function() require("nvim-autopairs").setup {} end
+        }
+
+        use {
+            "williamboman/mason.nvim",
+            config = function() require("mason").setup {} end
+        }
+
+        use {
+            'mfussenegger/nvim-jdtls',
+            config = function() require 'config.nvim-jdtls' end
+        }
+
+        -- nvim-dap-python
+        use {
+            'mfussenegger/nvim-dap-python',
+            config = function() require'dap-python'.setup("python") end
         }
 
     end

@@ -53,7 +53,9 @@ require'formatter'.setup {
                     }
                 end, "vue")()
             end
-        }
+        },
+        java = {require'formatter.filetypes.java'.google_java_format},
+        python = {require'formatter.filetypes.python'.yapf}
     }
 }
 

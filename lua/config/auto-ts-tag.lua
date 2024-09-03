@@ -1,4 +1,4 @@
-require'nvim-treesitter.configs'.setup {
+require'nvim-ts-autotag'.setup {
     auto_install = true,
     ensure_installed = {
         "lua", "vim", "go", "toml", "css", "tsx", "css", "html", "lua"
