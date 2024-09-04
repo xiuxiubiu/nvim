@@ -58,7 +58,7 @@ api.nvim_set_keymap('n', '\'rc', '<cmd> lua require"dap".repl.close()<cr>',
 api.nvim_set_keymap('n', '\'ut', '<cmd> lua require"dapui".toggle()<cr>',
                     {nowait = true})
 api.nvim_set_keymap('n', '\'fe',
-                    '<cmd> lua require"dapui".float_element("scopes", {width=200, height=40, enter=true})<cr>',
+                    '<cmd> lua require"dapui".float_element(nil, {width=200, height=40, enter=true})<cr>',
                     {nowait = true})
 api.nvim_set_keymap('n', '\'ue', '<cmd> lua require"dapui".eval()<cr>',
                     {nowait = true})
@@ -90,32 +90,6 @@ vim.lsp.handlers["textDocument/hover"] =
         -- Use a sharp border with `FloatBorder` highlights
         border = "single"
     })
-local function hover_wrap(_, method, result)
-    util.focusable_float(method, function()
-        if not (result and result.contents) then
-            -- return { 'No information available' }
-            return
-        end
-        local markdown_lines = util.convert_input_to_markdown_lines(
-                                   result.contents)
-        markdown_lines = util.trim_empty_lines(markdown_lines)
-        if vim.tbl_isempty(markdown_lines) then
-            -- return { 'No information available' }
-            return
-        end
-        local bufnr, winnr = util.fancy_floating_markdown(markdown_lines)
-        util.close_preview_autocmd(
-            {"CursorMoved", "BufHidden", "InsertCharPre"}, winnr)
-        local hover_len = #vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)[1]
-        local win_width = vim.api.nvim_win_get_width(0)
-        if hover_len > win_width then
-            vim.api.nvim_win_set_width(winnr, math.min(hover_len, win_width))
-            vim.api.nvim_win_set_height(winnr, math.ceil(hover_len / win_width))
-            vim.wo[winnr].wrap = true
-        end
-        return bufnr, winnr
-    end)
-end
 
 -- buffers
 api.nvim_set_keymap('n', ']', '<cmd> bn<cr>', {nowait = true})
