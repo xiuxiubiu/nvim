@@ -58,7 +58,7 @@ api.nvim_set_keymap('n', '\'rc', '<cmd> lua require"dap".repl.close()<cr>',
 api.nvim_set_keymap('n', '\'ut', '<cmd> lua require"dapui".toggle()<cr>',
                     {nowait = true})
 api.nvim_set_keymap('n', '\'fe',
-                    '<cmd> lua require"dapui".float_element(nil, {width=200, height=40, enter=true})<cr>',
+                    '<cmd> lua require"dapui".float_element("scopes", {width=200, height=40, enter=true})<cr>',
                     {nowait = true})
 api.nvim_set_keymap('n', '\'ue', '<cmd> lua require"dapui".eval()<cr>',
                     {nowait = true})
