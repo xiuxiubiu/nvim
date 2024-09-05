@@ -52,7 +52,7 @@ return {
         }
 
         -- typescript-language-server
-        lspconfig.tsserver.setup {}
+        lspconfig.ts_ls.setup {}
 
         -- volar
         -- require'lspconfig'.volar.setup {

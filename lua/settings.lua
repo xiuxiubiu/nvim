@@ -1,8 +1,8 @@
 local api = vim.api
-local g = vim.g
+-- local g = vim.g
 local opt = vim.opt
 local fn = vim.fn
-local util = vim.util
+-- local util = vim.util
 
 -- breakpoint
 fn.sign_define('DapBreakpoint',
