@@ -28,7 +28,7 @@ api.nvim_create_autocmd("BufWritePost", {
     command = [[:FormatWrite]],
     pattern = {
         '*.go', '*.rs', "*.lua", "*.vue", "*.js", "*.ts", "*.html", "*.jsx",
-        "*.tsx", "*.json", "*.css", "*.java", "*.py"
+        "*.tsx", "*.json", "*.css", "*.java", "*.py", "*.sql"
     }
 })
 
@@ -150,3 +150,6 @@ api.nvim_set_keymap('n', 'tg', '<cmd>Telescope git_branches<cr>',
                     {nowait = true})
 api.nvim_set_keymap('n', 'tb', '<cmd>Telescope buffers<cr>', {nowait = true})
 api.nvim_set_keymap('n', 'ts', '<cmd>Telescope live_grep<cr>', {nowait = true})
+
+-- lazygit
+api.nvim_set_keymap('n', 'lg', '<cmd>LazyGit<cr>', {nowait = true})

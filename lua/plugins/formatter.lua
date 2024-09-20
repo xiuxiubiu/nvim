@@ -27,41 +27,7 @@ return {
                 },
                 json = {require'formatter.filetypes.json'.prettier},
                 css = {require'formatter.filetypes.css'.prettier},
-                vue = {
-                    -- require'formatter.filetypes.vue'.prettier,
-                    function()
-                        return util.withl(function(parser)
-                            if not parser then
-                                return {
-                                    exe = "prettier",
-                                    args = {
-                                        "--stdin-filepath",
-                                        util.escape_path(
-                                            util.get_current_buffer_file_path()),
-                                        "--use-tabs", "--tab-width=2",
-                                        "--vue-indent-script-and-style"
-                                    },
-                                    stdin = true,
-                                    try_node_modules = true
-                                }
-                            end
-
-                            return {
-                                exe = "prettier",
-                                args = {
-                                    "--stdin-filepath",
-                                    util.escape_path(
-                                        util.get_current_buffer_file_path()),
-                                    "--parser", parser, "--use-tabs",
-                                    "--tab-width=2",
-                                    "--vue-indent-script-and-style"
-                                },
-                                stdin = true,
-                                try_node_modules = true
-                            }
-                        end, "vue")()
-                    end
-                },
+                vue = {require'formatter.filetypes.vue'.prettier},
                 java = {require'formatter.filetypes.java'.google_java_format},
                 python = {require'formatter.filetypes.python'.yapf}
             }
