@@ -49,7 +49,7 @@ return {
             border = 'single', -- 'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
             -- width = <value>,
             -- height = <value>,
-            winblend = 3
+            winblend = 0
         }
     }
 }
