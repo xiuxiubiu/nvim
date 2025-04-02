@@ -8,20 +8,24 @@ return {
 		lspconfig.clangd.setup({})
 
 		-- gopls
-		lspconfig.gopls.setup({
-			cmd = { "gopls", "serve" },
-			filetypes = { "go", "gomod" },
-			root_dir = util.root_pattern("go.work", "go.mod", ".git"),
-			settings = {
-				gopls = {
-					analyses = { unusedparams = true },
-					-- staticcheck = true,
-					hoverKind = "FullDocumentation",
-					codelenses = { upgrade_dependency = true },
-					-- allowModfileModifications = true,
-				},
-			},
-		})
+		-- lspconfig["gopls"].setup({
+		-- 	cmd = { "gopls" },
+		-- 	-- on_attach = on_attach,
+		-- 	capabilities = capabilities,
+		-- 	settings = {
+		-- 		gopls = {
+		-- 			experimentalPostfixCompletions = true,
+		-- 			analyses = {
+		-- 				unusedparams = true,
+		-- 				shadow = true,
+		-- 			},
+		-- 			staticcheck = true,
+		-- 		},
+		-- 	},
+		-- 	init_options = {
+		-- 		usePlaceholders = true,
+		-- 	},
+		-- })
 
 		-- lua-language-server
 		lspconfig.lua_ls.setup({
@@ -49,7 +53,8 @@ return {
 		lspconfig.ts_ls.setup({})
 
 		-- python
-		lspconfig.pyright.setup({})
+		-- lspconfig.pyright.setup({})
+		lspconfig.pylsp.setup({})
 
 		-- tailwindcss
 		lspconfig.tailwindcss.setup({
@@ -145,5 +150,8 @@ return {
 		--         }
 		--     }
 		-- }
+
+		-- rust
+		-- lspconfig.rust_analyzer.setup({})
 	end,
 }

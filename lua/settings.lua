@@ -1,5 +1,5 @@
 local api = vim.api
--- local g = vim.g
+local g = vim.g
 local opt = vim.opt
 local fn = vim.fn
 -- local util = vim.util
@@ -105,19 +105,19 @@ api.nvim_set_keymap("n", "<C-s>", '<cmd> lua require"spectre".open_visual({selec
 -- Comment
 api.nvim_set_keymap(
 	"n",
-	"<C-_>",
+	"<C-/>",
 	'<cmd> lua require"Comment.api".toggle.linewise.current()<cr><cmd> normal $<cr>',
 	{ nowait = true }
 )
 api.nvim_set_keymap(
 	"i",
-	"<C-_>",
+	"<C-/>",
 	'<cmd> lua require"Comment.api".toggle.linewise.current()<cr><cmd> normal $<cr>',
 	{ nowait = true }
 )
 api.nvim_set_keymap(
 	"x",
-	"<C-_>",
+	"<C-/>",
 	'<esc><cmd>lua require"Comment.api".toggle.linewise(vim.fn.visualmode())<cr><cmd> normal $<cr>',
 	{ nowait = true }
 ) -- {}
@@ -142,3 +142,26 @@ api.nvim_set_keymap("n", "ts", "<cmd>Telescope live_grep<cr>", { nowait = true }
 
 -- lazygit
 -- api.nvim_set_keymap('n', 'lg', '<cmd>LazyGit<cr>', {nowait = true})
+
+-- rustaceanvim
+g.rustaceanvim = {
+	tools = {
+		Opts = {
+			enable_clippy = false,
+		},
+	},
+	FloatWinConfig = {
+		auto_focus = true,
+	},
+	lsp = {
+		ClientOpts = {
+			status_notify_level = false,
+		},
+	},
+}
+
+-- fold
+vim.o.foldcolumn = "0"
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
