@@ -5,19 +5,21 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
-		-- "hrsh7th/cmp-cmdline", -- For vsnip users.
-		-- "hrsh7th/cmp-vsnip",
-		-- "hrsh7th/vim-vsnip", -- For luasnip users.
-		-- "L3MON4D3/LuaSnip",
-		-- "saadparwaiz1/cmp_luasnip", -- For ultisnips users.
-		-- "SirVer/ultisnips",
-		-- "quangnguyen30192/cmp-nvim-ultisnips",
+		"hrsh7th/cmp-cmdline", -- For vsnip users.
+		"hrsh7th/cmp-vsnip",
+		"hrsh7th/vim-vsnip", -- For luasnip users.
+		"L3MON4D3/LuaSnip",
+		"saadparwaiz1/cmp_luasnip", -- For ultisnips users.
+		"SirVer/ultisnips",
+		"quangnguyen30192/cmp-nvim-ultisnips",
 
 		-- For snippy users.
-		-- "dcampos/nvim-snippy",
-		-- "dcampos/cmp-snippy",
+		"dcampos/nvim-snippy",
+		"dcampos/cmp-snippy",
 	},
 	config = function()
+		vim.opt.completeopt = { "menu", "menuone", "noselect" }
+
 		-- Setup nvim-cmp.
 		local cmp = require("cmp")
 
@@ -62,11 +64,10 @@ return {
 			}),
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
-				-- { name = "vsnip" }, -- For vsnip users.
-				-- { name = 'luasnip' }, -- For luasnip users.
-				-- { name = 'ultisnips' }, -- For ultisnips users.
-				-- { name = 'snippy' }, -- For snippy users.
-			}, { { name = "buffer" } }),
+				{ name = "vsnip" }, -- For vsnip users.
+			}, {
+				{ name = "buffer" },
+			}),
 			preselect = cmp.PreselectMode.None,
 			sorting = {
 				comparators = {
@@ -99,61 +100,11 @@ return {
 			sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
 		})
 
-		-- Setup lspconfig.
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-		-- local on_attach = function(client, bufnr)
-		-- 	local function buf_set_keymap(...)
-		-- 		vim.api.nvim_buf_set_keymap(bufnr, ...)
-		-- 	end
-		-- 	local function buf_set_option(...)
-		-- 		vim.api.nvim_buf_set_option(bufnr, ...)
-		-- 	end
-		--
-		-- 	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-		-- end
-
-		-- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-		-- require('lspconfig')['clangd'].setup {capabilities = capabilities}
-		require("lspconfig")["ccls"].setup({ capabilities = capabilities })
-
-		require("lspconfig")["html"].setup({ capabilities = capabilities })
-
-		-- sql
-		require("lspconfig")["sqlls"].setup({ capabilities = capabilities })
-
-		-- swift
-		require("lspconfig")["sourcekit"].setup({ capabilities = capabilities })
-
-		-- rust
-		require("lspconfig")["rust_analyzer"].setup({
-			capabilities = capabilities,
-		})
-
-		-- ts
-		require("lspconfig")["ts_ls"].setup({ capabilities = capabilities })
-
-		-- python
-		require("lspconfig")["pyright"].setup({ capabilities = capabilities })
-
-		-- GoLang
-		require("lspconfig")["gopls"].setup({
+		vim.lsp.config("gopls", {
 			cmd = { "gopls" },
 			-- on_attach = on_attach,
 			capabilities = capabilities,
-			settings = {
-				gopls = {
-					experimentalPostfixCompletions = true,
-					analyses = {
-						unusedparams = true,
-						shadow = true,
-					},
-					staticcheck = true,
-				},
-			},
-			init_options = {
-				usePlaceholders = true,
-			},
 		})
 	end,
 }

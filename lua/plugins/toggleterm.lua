@@ -3,7 +3,7 @@ return {
 	version = "*",
 	opts = {
 		-- size can be a number or function which is passed the current terminal
-		size = 15,
+		size = 20,
 		-- | function(term)
 		--   if term.direction == "horizontal" then
 		--     return 15

@@ -77,7 +77,7 @@ api.nvim_set_keymap(
 	"<cmd> lua vim.diagnostic.goto_next()<cr><cmd> lua vim.diagnostic.open_float()<cr>",
 	{ nowait = true }
 )
-api.nvim_set_keymap("n", "'h", "<cmd> lua vim.lsp.buf.hover()<cr>", { nowait = true })
+api.nvim_set_keymap("n", "'h", "<cmd> lua vim.lsp.buf.hover({border = 'single'})<cr>", { nowait = true })
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 	-- Use a sharp border with `FloatBorder` highlights
 	border = "single",

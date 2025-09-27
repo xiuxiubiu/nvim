@@ -1,63 +1,19 @@
 return {
 	"neovim/nvim-lspconfig",
 	config = function()
-		local lspconfig = require("lspconfig")
 		local util = require("lspconfig/util")
 
 		-- ccls
-		lspconfig.clangd.setup({})
-
-		-- gopls
-		-- lspconfig["gopls"].setup({
-		-- 	cmd = { "gopls" },
-		-- 	-- on_attach = on_attach,
-		-- 	capabilities = capabilities,
-		-- 	settings = {
-		-- 		gopls = {
-		-- 			experimentalPostfixCompletions = true,
-		-- 			analyses = {
-		-- 				unusedparams = true,
-		-- 				shadow = true,
-		-- 			},
-		-- 			staticcheck = true,
-		-- 		},
-		-- 	},
-		-- 	init_options = {
-		-- 		usePlaceholders = true,
-		-- 	},
-		-- })
-
-		-- lua-language-server
-		lspconfig.lua_ls.setup({
-			settings = {
-				Lua = {
-					runtime = {
-						-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-						version = "LuaJIT",
-					},
-					diagnostics = {
-						-- Get the language server to recognize the `vim` global
-						globals = { "vim" },
-					},
-					workspace = {
-						-- Make the server aware of Neovim runtime files
-						library = vim.api.nvim_get_runtime_file("", true),
-					},
-					-- Do not send telemetry data containing a randomized but unique identifier
-					telemetry = { enable = false },
-				},
-			},
-		})
+		vim.lsp.enable("clangd")
 
 		-- typescript-language-server
-		lspconfig.ts_ls.setup({})
+		vim.lsp.enable("ts_ls")
 
 		-- python
-		-- lspconfig.pyright.setup({})
-		lspconfig.pylsp.setup({})
+		vim.lsp.enable("pyright")
 
 		-- tailwindcss
-		lspconfig.tailwindcss.setup({
+		vim.lsp.config("tailwindcss", {
 			filetypes = {
 				"aspnetcorerazor",
 				"astro",
@@ -111,10 +67,10 @@ return {
 		})
 
 		-- html
-		lspconfig.html.setup({})
+		vim.lsp.enable("html")
 
 		-- css
-		lspconfig.cssls.setup({
+		vim.lsp.config("cssls", {
 			settings = {
 				css = { validatee = true, lint = { unknownAtRules = "ignore" } },
 				scss = { validatee = true, lint = { unknownAtRules = "ignore" } },
@@ -123,35 +79,9 @@ return {
 		})
 
 		-- sql
-		lspconfig.sqlls.setup({})
+		vim.lsp.enable("sqlls")
 
 		-- vue
-		-- lspconfig.vuels.setup({})
-		lspconfig.volar.setup({})
-
-		-- jdtls
-		-- lspconfig.jdtls.setup {}
-
-		-- swift
-		-- lspconfig.sourcekit.setup {
-		--     root_dir = function(filename, _)
-		--         return util.root_pattern 'buildServer.json'(filename) or
-		--                    util.root_pattern('*.xcodeproj', '*.xcworkspace')(
-		--                        filename) -- better to keep it at the end, because some modularized apps contain multiple Package.swift files
-		--         or
-		--                    util.root_pattern('compile_commands.json',
-		--                                      'Package.swift')(filename) or
-		--                    util.find_git_ancestor(filename) or
-		--                    util.root_pattern '*.swift'(filename)
-		--     end,
-		--     capabilities = {
-		--         workspace = {
-		--             didChangeWatchedFiles = {dynamicRegistration = true}
-		--         }
-		--     }
-		-- }
-
-		-- rust
-		-- lspconfig.rust_analyzer.setup({})
+		vim.lsp.enable("vue_ls")
 	end,
 }
