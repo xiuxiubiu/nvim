@@ -52,4 +52,8 @@ return {
 			winblend = 0,
 		},
 	},
+	config = function(_, opts)
+		require("toggleterm").setup(opts)
+		vim.keymap.set("t", "<C-'>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+	end,
 }

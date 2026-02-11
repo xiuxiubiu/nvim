@@ -1,7 +1,26 @@
 return {
 	"mfussenegger/nvim-dap",
+	dependencies = {
+		"rcarriga/nvim-dap-ui",
+		"theHamsta/nvim-dap-virtual-text",
+		"nvim-neotest/nvim-nio",
+	},
 	config = function()
 		local dap = require("dap")
+		local dapui = require("dapui")
+
+		require("nvim-dap-virtual-text").setup()
+		dapui.setup()
+
+		dap.listeners.after.event_initialized["dapui_config"] = function()
+			dapui.open()
+		end
+		dap.listeners.before.event_terminated["dapui_config"] = function()
+			dapui.close()
+		end
+		dap.listeners.before.event_exited["dapui_config"] = function()
+			dapui.close()
+		end
 
 		dap.adapters.lldb = {
 			type = "executable",
@@ -23,75 +42,8 @@ return {
 				cwd = "${workspaceFolder}",
 				stopOnEntry = false,
 				args = {},
-
-				-- 💀
-				-- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
-				--
-				--    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-				--
-				-- Otherwise you might get the following error:
-				--
-				--    Error on launch: Failed to attach to the target process
-				--
-				-- But you should be aware of the implications:
-				-- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
-				-- runInTerminal = false,
-
-				-- 💀
-				-- If you use `runInTerminal = true` and resize the terminal window,
-				-- lldb-vscode will receive a `SIGWINCH` signal which can cause problems
-				-- To avoid that uncomment the following option
-				-- See https://github.com/mfussenegger/nvim-dap/issues/236#issuecomment-1066306073
-				-- postRunCommands = {'process handle -p true -s false -n false SIGWINCH'}
 			},
 		}
-
-		-- rust
-		-- dap.configurations.rust = {
-		-- 	{
-		--     	name = 'Launch',
-		--     	type = 'lldb',
-		--     	request = 'launch',
-		--     	program = function()
-		-- 			local findFile = 'Cargo.toml'
-		-- 			vim.fn.chdir(string.match(vim.fn.expand('%'), '(.+)/[^/]*%.%w+$'))
-		-- 			while (true) do
-		-- 				local currentPath = vim.fn.getcwd()
-		-- 				if (currentPath == '/') then
-		-- 					return vim.fn.input('Path to executable: ', '/', 'file')
-		-- 				end
-		-- 				if (findFile == vim.fn.findfile(findFile)) then
-		-- 					vim.fn.system('cargo build')
-		-- 					return vim.fn.input('executable: ', currentPath .. '/target/debug/', 'file')
-		-- 				end
-		-- 				vim.fn.chdir('..')
-		-- 			end
-		--     	end,
-		--     	cwd = '${workspaceFolder}',
-		--     	stopOnEntry = false,
-		--     	args = {},
-		--
-		--     	-- 💀
-		--     	-- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
-		--     	--
-		--     	--    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-		--     	--
-		--     	-- Otherwise you might get the following error:
-		--     	--
-		--     	--    Error on launch: Failed to attach to the target process
-		--     	--
-		--     	-- But you should be aware of the implications:
-		--     	-- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
-		--     	-- runInTerminal = false,
-		--
-		--     	-- 💀
-		--     	-- If you use `runInTerminal = true` and resize the terminal window,
-		--     	-- lldb-vscode will receive a `SIGWINCH` signal which can cause problems
-		--     	-- To avoid that uncomment the following option
-		--     	-- See https://github.com/mfussenegger/nvim-dap/issues/236#issuecomment-1066306073
-		--     	-- postRunCommands = {'process handle -p true -s false -n false SIGWINCH'}
-		-- 	},
-		-- }
 
 		dap.adapters.go = function(callback, config)
 			local stdout = vim.loop.new_pipe(false)
@@ -130,7 +82,6 @@ return {
 			end, 100)
 		end
 
-		-- https://github.com/go-delve/delve/blob/master/Documentation/usage/dlv_dap.md
 		dap.configurations.go = {
 			{
 				type = "go",
@@ -143,18 +94,18 @@ return {
 			},
 		}
 
-		-- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#ccrust-via-lldb-vscode
-		-- dap.configurations.rust = {
-		-- 	{
-		-- 		name = "Debug",
-		-- 		type = "lldb",
-		-- 		request = "launch",
-		-- 		program = function()
-		-- 			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
-		-- 		end,
-		-- 		cwd = "${workspaceFolder}",
-		-- 		stopOnEntry = false,
-		-- 	},
-		-- }
+		-- Keybindings
+		local map = vim.keymap.set
+		map("n", "'d", dap.continue, { desc = "DAP Continue" })
+		map("n", "'b", dap.toggle_breakpoint, { desc = "DAP Toggle Breakpoint" })
+		map("n", "'cl", dap.clear_breakpoints, { desc = "DAP Clear Breakpoints" })
+		map("n", "'t", dap.terminate, { desc = "DAP Terminate" })
+		map("n", "'ro", dap.repl.open, { desc = "DAP REPL Open" })
+		map("n", "'rc", dap.repl.close, { desc = "DAP REPL Close" })
+		map("n", "'ut", dapui.toggle, { desc = "DAP UI Toggle" })
+		map("n", "'ue", dapui.eval, { desc = "DAP UI Eval" })
+		map("n", "'fe", function()
+			dapui.float_element(nil, { width = 200, height = 40, enter = true })
+		end, { desc = "DAP UI Float Element" })
 	end,
 }

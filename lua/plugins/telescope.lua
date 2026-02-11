@@ -3,7 +3,10 @@ return {
 	tag = "0.1.8",
 	dependencies = { "nvim-lua/plenary.nvim" },
 	config = function()
-		require("telescope").setup({
+		local telescope = require("telescope")
+		local builtin = require("telescope.builtin")
+
+		telescope.setup({
 			defaults = {
 				file_ignore_patterns = {
 					"^target/",
@@ -20,5 +23,13 @@ return {
 				"--smart-case",
 			},
 		})
+
+		-- Keybindings
+		local map = vim.keymap.set
+		map("n", "ts", builtin.live_grep, { desc = "Telescope live grep" })
+		map("n", "tf", builtin.find_files, { desc = "Telescope find files" })
+		map("n", "tg", builtin.git_branches, { desc = "Telescope git branches" })
+		map("n", "tb", builtin.buffers, { desc = "Telescope buffers" })
+		map("n", "tr", builtin.resume, { desc = "Telescope resume" })
 	end,
 }
