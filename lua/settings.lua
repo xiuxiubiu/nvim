@@ -143,23 +143,6 @@ api.nvim_set_keymap("n", "ts", "<cmd>Telescope live_grep<cr>", { nowait = true }
 -- lazygit
 -- api.nvim_set_keymap('n', 'lg', '<cmd>LazyGit<cr>', {nowait = true})
 
--- rustaceanvim
-g.rustaceanvim = {
-	tools = {
-		Opts = {
-			enable_clippy = false,
-		},
-	},
-	FloatWinConfig = {
-		auto_focus = true,
-	},
-	lsp = {
-		ClientOpts = {
-			status_notify_level = false,
-		},
-	},
-}
-
 -- fold
 vim.o.foldcolumn = "0"
 vim.o.foldlevel = 99
