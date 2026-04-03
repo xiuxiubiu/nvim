@@ -4,6 +4,7 @@ local opt = vim.opt
 opt.termguicolors = true
 opt.hlsearch = true
 opt.number = true
+opt.fillchars = { eob = " " }
 opt.tabstop = 4
 opt.sw = 4
 opt.mouse = ""
@@ -17,9 +18,11 @@ opt.splitright = true
 opt.shell = "/bin/zsh"
 
 -- Check if we need to reload the file when it changed
-vim.api.nvim_create_autocmd("BufEnter", {
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
 	callback = function()
-		vim.cmd("checktime")
+		vim.schedule(function()
+			vim.cmd("checktime")
+		end)
 	end,
 })
 
