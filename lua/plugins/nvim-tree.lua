@@ -126,7 +126,6 @@ return {
                 update_root = {enable = false, ignore_list = {}},
                 exclude = false
             },
-            system_open = {cmd = "", args = {}},
             git = {
                 enable = false,
                 show_on_dirs = true,
