@@ -38,6 +38,22 @@ vim.diagnostic.config({
 	float = { border = "single" },
 })
 
+-- Neovim 0.12.1: injection queries can yield matches where the node is nil or
+-- a non-TSNode value, crashing get_range with
+-- "attempt to call method 'range' (a nil value)". Swallow any failure and
+-- return an empty range so parsing can continue for other captures.
+-- Installed here (before plugins) to beat the first treesitter parse.
+do
+	local orig_get_range = vim.treesitter.get_range
+	vim.treesitter.get_range = function(node, source, metadata)
+		local ok, result = pcall(orig_get_range, node, source, metadata)
+		if ok then
+			return result
+		end
+		return { 0, 0, 0, 0, 0, 0 }
+	end
+end
+
 -- General Keybindings
 local map = vim.keymap.set
 
