@@ -59,7 +59,15 @@ return {
 				},
 			},
 			color_overrides = {},
-			custom_highlights = {},
+			custom_highlights = function(colors)
+				return {
+					CmpPmenu = { bg = colors.mantle },
+					CmpSel = { bg = colors.surface0, bold = true },
+					CmpDoc = { bg = colors.mantle },
+					FloatBorder = { fg = colors.overlay0 },
+					NormalFloat = { bg = colors.mantle },
+				}
+			end,
 			default_integrations = true,
 			auto_integrations = false,
 			integrations = {

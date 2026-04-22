@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 
 -- Diagnostic configuration
 vim.diagnostic.config({
-	float = { border = "single" },
+	float = { border = "rounded" },
 })
 
 -- Neovim 0.12.1: injection queries can yield matches where the node is nil or
@@ -69,8 +69,11 @@ map("n", "'ca", vim.lsp.buf.code_action, { desc = "LSP Code Action" })
 map("n", "'g", vim.lsp.buf.definition, { desc = "LSP Definition" })
 map("n", "'rf", vim.lsp.buf.references, { desc = "LSP References" })
 map("n", "'h", function()
-	vim.lsp.buf.hover({ border = "single" })
+	vim.lsp.buf.hover({ border = "rounded", max_height = 100, max_width = 120 })
 end, { desc = "LSP Hover" })
+map("n", "'s", function()
+	vim.lsp.buf.signature_help({ border = "rounded", max_height = 15, max_width = 80 })
+end, { desc = "LSP Signature Help" })
 map("n", "'ei", vim.diagnostic.open_float, { desc = "Diagnostic Float" })
 map("n", "'el", vim.diagnostic.setloclist, { desc = "Diagnostic Loclist" })
 map("n", "'ep", function()
@@ -93,3 +96,4 @@ vim.o.foldenable = true
 
 -- Sign for DAP
 vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "", linehl = "", numhl = "" })
+
