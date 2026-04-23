@@ -33,6 +33,16 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 	end,
 })
 
+-- 2-space indentation for frontend files
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "typescript", "javascript", "json", "html", "css", "tsx", "typescriptreact", "jsx", "javascriptreact", "vue", "yaml", "xml" },
+	callback = function()
+		vim.opt_local.tabstop = 2
+		vim.opt_local.shiftwidth = 2
+		vim.opt_local.autoindent = true
+	end,
+})
+
 -- Diagnostic configuration
 vim.diagnostic.config({
 	float = { border = "rounded" },

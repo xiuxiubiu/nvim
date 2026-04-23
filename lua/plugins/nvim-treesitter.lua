@@ -11,7 +11,7 @@ return {
             },
             sync_install = false,
             highlight = {enable = true},
-            indent = {enable = true},
+            indent = {enable = true, disable = {"javascript", "typescript", "tsx", "json", "html", "css", "vue", "yaml", "xml"}},
             modules = {},
             auto_install = true,
             ignore_install = {}
