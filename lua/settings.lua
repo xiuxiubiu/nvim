@@ -39,7 +39,11 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function()
 		vim.opt_local.tabstop = 2
 		vim.opt_local.shiftwidth = 2
-		vim.opt_local.autoindent = true
+		-- Built-in indent scripts set autoindent; defer the override so it
+		-- wins regardless of autocmd execution order.
+		vim.schedule(function()
+			vim.opt_local.autoindent = false
+		end)
 	end,
 })
 
