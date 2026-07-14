@@ -7,7 +7,8 @@ return {
             ensure_installed = {
                 "c", "lua", "vim", "vimdoc", "query", "elixir", "heex",
                 "javascript", "html", "java", "python", "typescript", "go",
-                "json", "xml", "sql", "rust", "yaml"
+                "json", "xml", "sql", "rust", "yaml",
+                "markdown", "markdown_inline"
             },
             sync_install = false,
             highlight = {enable = true},
