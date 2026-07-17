@@ -10,6 +10,21 @@ return {
 		vim.lsp.enable("ts_ls")
 
 		-- python
+		-- 项目根下存在 .venv(uv/poetry/pdm 的约定位置)时,显式指定解释器,
+		-- 否则 pyright 用系统 python,第三方包全部 reportMissingImports
+		vim.lsp.config("pyright", {
+			before_init = function(_, config)
+				local root = config.root_dir
+				if root then
+					local venv = root .. "/.venv/bin/python"
+					if vim.fn.executable(venv) == 1 then
+						config.settings = vim.tbl_deep_extend("force", config.settings or {}, {
+							python = { pythonPath = venv },
+						})
+					end
+				end
+			end,
+		})
 		vim.lsp.enable("pyright")
 
 		-- tailwindcss
