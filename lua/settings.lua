@@ -1,5 +1,15 @@
 local opt = vim.opt
 
+-- Use the dedicated Jupyter environment for Neovim's Python remote-plugin
+-- host. Project virtual environments remain available to Pyright and kernels.
+local jupyter_venv = vim.fn.stdpath("data") .. "/jupyter-venv"
+vim.g.python3_host_prog = jupyter_venv .. "/bin/python"
+
+-- jupytext.nvim shells out to a bare `jupytext`, so the binary has to be on
+-- Neovim's PATH. Prepending here instead of in the login shell keeps the
+-- notebook tooling scoped to Neovim.
+vim.env.PATH = jupyter_venv .. "/bin:" .. vim.env.PATH
+
 -- General Settings
 opt.termguicolors = true
 opt.hlsearch = true
@@ -65,6 +75,22 @@ do
 			return result
 		end
 		return { 0, 0, 0, 0, 0, 0 }
+	end
+end
+
+-- Neovim 0.11 removed the vim.health.report_* aliases in favour of
+-- vim.health.start/ok/info/warn/error. Plugins still on the old names (e.g.
+-- jupytext.nvim) make :checkhealth abort with "attempt to call field
+-- 'report_start'" instead of running their check. Map the old names back.
+for old, new in pairs({
+	report_start = "start",
+	report_ok = "ok",
+	report_info = "info",
+	report_warn = "warn",
+	report_error = "error",
+}) do
+	if not vim.health[old] then
+		vim.health[old] = vim.health[new]
 	end
 end
 
