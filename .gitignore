@@ -40,3 +40,7 @@ luac.out
 *.hex
 plugin/packer_compiled.lua
 .luarc.json
+
+# Local agent tooling
+.claude/
+openspec/
