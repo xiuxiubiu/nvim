@@ -107,7 +107,113 @@ map("n", "<C-q>", "<cmd>q<cr>", { desc = "Quit" })
 map("n", "'rn", vim.lsp.buf.rename, { desc = "LSP Rename" })
 map("n", "'ca", vim.lsp.buf.code_action, { desc = "LSP Code Action" })
 map("n", "'g", vim.lsp.buf.definition, { desc = "LSP Definition" })
-map("n", "'rf", vim.lsp.buf.references, { desc = "LSP References" })
+-- References: jump straight to the only hit, otherwise pick from a floating
+-- picker. Uses on_list so a single LSP request drives both paths.
+local function jump_to_item(item)
+	-- Record the current spot in the jumplist before moving.
+	vim.cmd("normal! m'")
+	local bufnr = item.bufnr or vim.fn.bufadd(item.filename)
+	vim.bo[bufnr].buflisted = true
+	vim.api.nvim_win_set_buf(0, bufnr)
+	vim.api.nvim_win_set_cursor(0, { item.lnum, math.max((item.col or 1) - 1, 0) })
+	vim.cmd("normal! zz")
+end
+
+local function pick_reference(items)
+	local ok, pickers = pcall(require, "telescope.pickers")
+	if not ok then
+		vim.fn.setqflist({}, " ", { title = "LSP References", items = items })
+		vim.cmd("copen")
+		return
+	end
+
+	local finders = require("telescope.finders")
+	local conf = require("telescope.config").values
+	local make_entry = require("telescope.make_entry")
+
+	-- flex puts the preview beside the list when there is room, so the preview
+	-- gets the full picker height instead of a slice of it, and stacks it above
+	-- the list when there is not. The switch compares vim.o.columns against
+	-- flip_columns; 130 is where a 0.6 preview share still leaves ~70 cells of
+	-- code and ~47 for the results column.
+	--
+	-- width/height are repeated in both sub-tables on purpose. flex merges
+	-- Telescope's own horizontal/vertical defaults (0.8 x 0.9) into whichever
+	-- sub-table it delegates to, and that merged table outranks anything set at
+	-- the top level of layout_config. Hoisting these silently resizes the picker.
+	local opts = {
+		layout_strategy = "flex",
+		layout_config = {
+			flip_columns = 130,
+			horizontal = {
+				width = 0.9,
+				height = 0.85,
+				prompt_position = "top",
+				preview_width = 0.6,
+				preview_cutoff = 1,
+			},
+			vertical = {
+				width = 0.9,
+				height = 0.9,
+				prompt_position = "top",
+				preview_height = 0.5,
+				preview_cutoff = 1,
+			},
+		},
+		-- References come back ordered by file and line rather than ranked, so
+		-- they have to read top-down instead of growing upward from the prompt.
+		sorting_strategy = "ascending",
+		-- gen_from_quickfix pins its path column to 30 cells whenever the inline
+		-- snippet is shown, and that column truncates from the right, cutting off
+		-- the filename and :line:col. Dropping the snippet leaves a single
+		-- full-width column, so path_display's tail-preserving truncation governs
+		-- instead. The snippet text stays in each entry's ordinal, so typing code
+		-- text still filters the list.
+		show_line = false,
+		-- truncate's budget is the results width less the caret and 2 cells; it
+		-- does not know gen_from_quickfix still has to append ":lnum:col", so a
+		-- bare { "truncate" } overflows the window and the line/col get clipped.
+		-- The number reserves that many extra cells: 10 covers ":12345:123".
+		path_display = { truncate = 10 },
+	}
+
+	pickers
+		.new(opts, {
+			prompt_title = "LSP References",
+			finder = finders.new_table({
+				results = items,
+				entry_maker = make_entry.gen_from_quickfix(opts),
+			}),
+			previewer = conf.qflist_previewer(opts),
+			sorter = conf.generic_sorter(opts),
+			push_cursor_on_edit = true,
+			push_tagstack_on_edit = true,
+		})
+		:find()
+end
+
+map("n", "'rf", function()
+	local cur_file = vim.api.nvim_buf_get_name(0)
+	local cur_lnum = vim.api.nvim_win_get_cursor(0)[1]
+
+	vim.lsp.buf.references({ includeDeclaration = true }, {
+		on_list = function(result)
+			-- Drop the symbol under the cursor so a definition with a single
+			-- usage still counts as one reference.
+			local items = vim.tbl_filter(function(item)
+				return not (item.filename == cur_file and item.lnum == cur_lnum)
+			end, result.items or {})
+
+			if #items == 0 then
+				vim.notify("No references found", vim.log.levels.INFO)
+			elseif #items == 1 then
+				jump_to_item(items[1])
+			else
+				pick_reference(items)
+			end
+		end,
+	})
+end, { desc = "LSP References" })
 map("n", "'h", function()
 	vim.lsp.buf.hover({ border = "rounded", max_height = 100, max_width = 120 })
 end, { desc = "LSP Hover" })
@@ -136,4 +242,3 @@ vim.o.foldenable = true
 
 -- Sign for DAP
 vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "", linehl = "", numhl = "" })
-
