@@ -26,13 +26,36 @@ opt.formatoptions = "r"
 opt.splitbelow = true
 opt.splitright = true
 opt.shell = "/bin/zsh"
+opt.autoread = true
 
 -- Check if we need to reload the file when it changed
-vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+local file_reload_group = vim.api.nvim_create_augroup("ExternalFileReload", { clear = true })
+
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+	group = file_reload_group,
 	callback = function()
 		vim.schedule(function()
 			vim.cmd("checktime")
 		end)
+	end,
+})
+
+if type(vim.g.external_file_check_timer) == "number" then
+	vim.fn.timer_stop(vim.g.external_file_check_timer)
+end
+
+local file_check_timer = vim.fn.timer_start(3000, function()
+	vim.cmd("checktime")
+end, { ["repeat"] = -1 })
+vim.g.external_file_check_timer = file_check_timer
+
+vim.api.nvim_create_autocmd("VimLeavePre", {
+	group = file_reload_group,
+	callback = function()
+		vim.fn.timer_stop(file_check_timer)
+		if vim.g.external_file_check_timer == file_check_timer then
+			vim.g.external_file_check_timer = nil
+		end
 	end,
 })
 
