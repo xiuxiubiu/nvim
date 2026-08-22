@@ -6,8 +6,9 @@ return {
 		-- ccls
 		vim.lsp.enable("clangd")
 
-		-- typescript-language-server
-		vim.lsp.enable("ts_ls")
+		-- TypeScript 7 native language server. nvim-lspconfig resolves the
+		-- workspace-local node_modules/.bin/tsc before falling back to PATH.
+		vim.lsp.enable("tsc")
 
 		-- python
 		-- 存在 .venv(uv/poetry/pdm 的约定位置)时,显式指定解释器,
